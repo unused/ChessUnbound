@@ -1,0 +1,19 @@
+Feature: Game Storage
+
+  Scenario: Creating a new game session
+    When I send a POST request to /game with the followin values
+      | host    | player |
+      | philipp | markus |
+    Then the response status should be 200
+
+  Scenario: Retrieving list of games
+    Given the following list of games
+      | host    | player    |
+      | philipp | markus    |
+      | philipp | christoph |
+      | markus  | christoph |
+    When I send a POST request to /games/philipp
+    Then the response status should be 200
+      And the body should contain markus
+      And the body should contain christoph
+
