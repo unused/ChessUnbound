@@ -1,4 +1,4 @@
-Feature: Playing Chess
+Feature: playing chess
   In order to play chess
   As a chess player
   I want to make some fancy moves
