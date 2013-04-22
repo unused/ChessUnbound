@@ -7,80 +7,47 @@ require 'selenium-webdriver'
 Capybara.default_driver = :selenium
 Capybara.app_host = 'https://www.github.com/unused'
 
-
-When(/^I am in the game with FEN "(.*?)"$/) do |arg1|
+Given(/^Someone started the game "(.*?)"$/) do |name|
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I move E(\d+) to D(\d+)$/) do |arg1, arg2|
+When(/^I am in the game with FEN "(.*?)"$/) do |fen|
+  @fen = fen
+end
+
+When(/^I move (\w\d) to (\w\d)$/) do |position, move|
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I should see move not allowed$/) do
+When(/^I choose the game "(.*?)"$/) do |name|
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I move E(\d+) to E(\d+)$/) do |arg1, arg2|
+When(/^I am on the "([^"]*)" screen$/) do |page|
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I should not see move not allowed$/) do
+When(/^I press the "([^"]*)" button$/) do |button|
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I am on the home screen$/) do
+When(/^I write "(.*?)" game in the name field$/) do |name|
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I press the new game button$/) do
+Then(/^I should see move (not)?\s?allowed$/) do |negative|
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I write "(.*?)" game in the name field$/) do |arg1|
+Then(/^I should be on the "([^"]*)" screen$/) do |page|
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I press the short game button$/) do
+Then(/^I should see game "(.*?)" in the game list$/) do |name|
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I should be on the home screen$/) do
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I should see game "(.*?)" in the game list$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^game "(.*?)" should read waiting$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Given(/^Someone started the game "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-When(/^I am on the "(.*?)" screen$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-When(/^I press the "(.*?)" button$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I should see game "(.*?)" in the list$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-When(/^I choose the game "(.*?)"$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I should be on the "(.*?)" screen$/) do |arg1|
-  pending # express the regexp above with the code you wish you had
-end
-
-Then(/^I should see "(.*?)" in the game list$/) do |arg1|
+Then(/^game "(.*?)" should read waiting$/) do |name|
   pending # express the regexp above with the code you wish you had
 end
 

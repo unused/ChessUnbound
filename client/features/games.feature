@@ -14,7 +14,7 @@ Feature: game creation
     Given Someone started the game "another game"
     When I am on the "home" screen
       And I press the "connect to game" button
-    Then I should see game "another game" in the list
+    Then I should see game "another game" in the game list
 
   Scenario: User can connect to an open game
     Given Someone started the game "join me"
