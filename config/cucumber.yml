@@ -1,0 +1,4 @@
+---
+default: --format pretty
+server: server/features
+client: client/features

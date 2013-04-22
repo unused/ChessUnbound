@@ -3,12 +3,19 @@
 ## General Information
 
 client: sencha touch
+
 server: sinatra
+
 bdd: cucumber with selenium
+
+## Setup
+
+    $ bundle install
 
 ## User-Stories
 
 BDD Client:
+
 * Registration (Prio 3)
 * Login (Prio 3)
 * Guest-Login (Prio 2, really needed?)
@@ -20,7 +27,7 @@ BDD Client:
 * Do invalid move (Prio 2)
 
 BDD Server:
-* Create Game (Prio 2)
+
 * Do invalid move (Prio 2)
 * Do valid move (Prio 2)
 * Registration (Prio 3)
@@ -29,12 +36,13 @@ BDD Server:
 * Create Session (Prio 1)
 
 ## Other Information
+
 * Games should be choosen short (1 week) or long (3 weeks)
 * Validate moves client- and server-side
-* Store game position (FEN notation see [1])
+* Store game position with [FEN][1] notation
 * Notify if a move was made
 
 
-1 ... http://en.wikipedia.org/wiki/Board_representation_(chess)#Forsyth-Edwards_Notation_.28FEN.29
+[1]: http://en.wikipedia.org/wiki/Board_representation_(chess)#Forsyth-Edwards_Notation_.28FEN.29
 
 
