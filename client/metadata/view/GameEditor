@@ -1,0 +1,30 @@
+{
+    "type": "Ext.form.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "GameEditor",
+        "designer|userAlias": "gameeditor"
+    },
+    "designerId": "c3d5a2aa-9693-43c9-b2f3-2f8fc48373be",
+    "cn": [
+        {
+            "type": "Ext.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "designer|userClassName": "MyToolbar1",
+                "designer|displayName": "GameEditorToolbar",
+                "title": "New Game"
+            },
+            "designerId": "45a8281a-2fe2-432b-8483-742a0ce6fa9b"
+        }
+    ]
+}

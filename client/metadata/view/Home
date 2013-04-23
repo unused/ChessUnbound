@@ -1,0 +1,65 @@
+{
+    "type": "Ext.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "Home",
+        "designer|userAlias": "home",
+        "designer|initialView": true
+    },
+    "designerId": "07d9ad68-6e9e-4c59-97ab-c39670f895b3",
+    "cn": [
+        {
+            "type": "Ext.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "designer|userClassName": "MyToolbar",
+                "designer|displayName": "HomeToolbar",
+                "title": "Home"
+            },
+            "designerId": "995f72fe-6fc5-42d1-a3d2-f65e4f57faad"
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "mybutton",
+                "designer|userClassName": "MyButton",
+                "text": "MyButton"
+            },
+            "designerId": "ca42e5ec-00b8-4efa-bd84-00723bb7b5da",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onMybuttonTap",
+                        "fn": "onMybuttonTap",
+                        "implHandler": [
+                            "this.fireEvent(\"newGameCommand\");\r",
+                            "console.log(\"NewGameCommand\");"
+                        ],
+                        "name": "tap"
+                    },
+                    "designerId": "fc660d6c-abac-41cc-a6f4-38a9b1479538"
+                }
+            ]
+        }
+    ]
+}

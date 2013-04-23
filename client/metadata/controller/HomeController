@@ -1,0 +1,70 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "HomeController"
+    },
+    "designerId": "f489947c-3662-4b0d-ae22-5b8f047b76c6",
+    "cn": [
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "home",
+                "autoCreate": true,
+                "ref": "home",
+                "selector": "home",
+                "xtype": "home"
+            },
+            "designerId": "ab69b4e0-f0da-4e61-bbe1-81fa6642f96a"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "gameEditor",
+                "autoCreate": true,
+                "ref": "gameEditor",
+                "selector": "gameeditor",
+                "xtype": "gameeditor"
+            },
+            "designerId": "8a2907b0-eede-4b58-b4da-6b0a76034745"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onNewGameCommand",
+                "fn": "onNewGameCommand",
+                "designer|params": [
+                    "panel"
+                ],
+                "implHandler": [
+                    "console.log(\"onNewGameCommand\");\r",
+                    "var gameEditor = this.getGameEditor();\r",
+                    "Ext.Viewport.animateActiveItem(gameEditor, ChessToGo.app.slideLeft());"
+                ],
+                "name": "newGameCommand",
+                "designer|targetType": "Home",
+                "designer|controlQuery": "panel"
+            },
+            "designerId": "81ef3ad2-ff13-453e-8990-5dc05d97099e"
+        }
+    ]
+}
