@@ -25,16 +25,18 @@ Ext.define('ChessToGo.view.Home', {
                 title: 'Home'
             },
             {
-                xtype: 'button',
-                itemId: 'mybutton',
-                text: 'MyButton'
+                xtype: 'newgamebutton',
+                itemId: 'newgamebutton',
+                ui: 'action',
+                iconCls: 'star',
+                text: 'New Game'
             }
         ],
         listeners: [
             {
                 fn: 'onMybuttonTap',
                 event: 'tap',
-                delegate: '#mybutton'
+                delegate: '#newgamebutton'
             }
         ]
     },

@@ -35,9 +35,14 @@
             },
             "codeClass": null,
             "userConfig": {
-                "itemId": "mybutton",
+                "itemId": "newgamebutton",
+                "ui": "action",
                 "designer|userClassName": "MyButton",
-                "text": "MyButton"
+                "designer|displayName": "NewGameButton",
+                "designer|createAlias": "newgamebutton",
+                "badgeText": null,
+                "iconCls": "star",
+                "text": "New Game"
             },
             "designerId": "ca42e5ec-00b8-4efa-bd84-00723bb7b5da",
             "cn": [
