@@ -16,20 +16,13 @@ Feature: game creation
 		And I press 'Join' button on the 'MuhKuh' game
 		Then I should be on the 'Board' screen
 		And I press 'Play' button
-		Then there is a info 'Game started'
-
-	Scenario: user joins game
-		When I am on the 'Home' screen
-		And in 'Games' list the game 'MuhKuh' is 'waiting'
-		And I press 'Join' button on the 'MuhKuh' game
-		Then I should be on the 'Board' screen
-		And I press 'Play' button
+		And opponent wants to play
 		Then the game should have started
 
 	Scenario: user can't join game
 		When I am on the 'Home' screen
 		And in 'Games' list the game 'MuhKuh' is 'playing'
-		Then there is not a 'Join' button
+		Then there is no 'Join' button
 
 	Scenario: user watchs game
 		When I am on the 'Home' screen
@@ -38,25 +31,61 @@ Feature: game creation
 		Then I should be on the 'Board' screen
 		And I should be watching
 
-	Scenario: user moves a piece
+	Scenario: white me moves a piece
 		Given a running game
-		And it is my turn
+		And I am white
+		And it is white turn 
 		And I move a piece correctly
 		Then the board should be updated
-		And it is not my turn
+		And it is black turn
 
-	Scenario: user forfeits
+	Scenario: black me moves a piece
 		Given a running game
-		And is is my turn
+		And I am black
+		And it is black turn 
+		And I move a piece correctly
+		Then the board should be updated
+		And it is white turn
+
+	Scenario: white opponent moves a piece
+		Given a running game
+		And I am black
+		And it is white turn 
+		Then I need to wait for black
+		
+	Scenario: black opponent moves a piece
+		Given a running game
+		And I am white
+		And it is black turn 
+		Then I need to wait for black
+
+	Scenario: white me forfeits
+		Given a running game
+		And I am white
+		And it is white turn
 		And I press 'Forfeit' button
-		And the game ends with lost
+		And the game ends with white wins
 
-	Scenario: user wants remis
+	Scenario: black me forfeits
 		Given a running game
-		And is is my turn
+		And I am black
+		And it is black turn
+		And I press 'Forfeit' button
+		And the game ends with black wins
+
+	Scenario: white me wants remis
+		Given a running game
+		And I am white
+		And it is white turn
 		And I press 'Remis' button
-		Then there is a info 'Waiting'
-		And it is not my turn
+		Then I need to wait for black
+		
+	Scenario: black me wants remis
+		Given a running game
+		And I am black
+		And it is black turn
+		And I press 'Remis' button
+		Then I need to wait for white
 
 	Scenario: user accepts remis
 		Given a running game
@@ -70,14 +99,27 @@ Feature: game creation
 		When there is a remie request
 		And it is my turn
 		And I press 'Decline' button
-		Then it is my opponents turn
+		Then the game continues
+		And it is not my turn
 
 	Scenario: user wins
 		Given a running game
-		When he is matt
-		Then the game ends with won
+		When opponent is check-matt
+		Then the game ends with I won
 		
 	Scenario: user lost
 		Given a running game
-		When he is matt
-		Then the game ends with lost
+		When opponent is matt
+		Then the game ends with I lost
+		
+	Scenario: opponent time ran out
+		Given a running game
+		When time ran out
+		And it is opponent turn
+		Then the game ends with I win
+		
+	Scenario: my time ran out
+		Given a running game
+		When time ran out
+		And it is my turn
+		Then the game ends with I lost
