@@ -5,7 +5,7 @@ include Capybara::DSL
 require 'selenium-webdriver'
 
 Capybara.default_driver = :selenium
-Capybara.app_host = 'http://sewm.chl.dev'
+Capybara.app_host = 'http://chesstogo.dev'
 Capybara.register_driver :selenium do |app|
   Capybara::Selenium::Driver.new(app, :browser => :chrome)
 end
@@ -59,3 +59,4 @@ end
 Then(/^I should read "(.*?)" within "(.*?)"$/) do |content, selector|
   page.find("##{selector}").has_content?(content)
 end
+

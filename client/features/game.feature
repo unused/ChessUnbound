@@ -1,37 +1,7 @@
-Feature: game creation
+Feature: playing chess
   In order to play chess
   As a chess player
   I want to start a new game
-
-	Scenario: user creates new game
-		When I am on the 'Home' screen
-      And I press 'New Game' button
-		Then I should be on the 'GameEditor' screen
-      And I write 'Muhkuh' in the name field
-      And I press the 'Create Game' button
-    Then I should be on the 'Home' screen
-      And in the 'Games' list the game 'MuhKuh' should be 'waiting'
-
-	Scenario: user joins game
-		When I am on the 'Home' screen
-      And in 'Games' list the game 'MuhKuh' is 'waiting'
-      And I press 'Join' button on the 'MuhKuh' game
-		Then I should be on the 'Board' screen
-      And I press 'Play' button
-      And opponent wants to play
-		Then the game should have started
-
-	Scenario: user can't join game
-		When I am on the 'Home' screen
-      And in 'Games' list the game 'MuhKuh' is 'playing'
-		Then there is no 'Join' button
-
-	Scenario: user watchs game
-		When I am on the 'Home' screen
-      And in 'Games' list the game 'MuhKuh' is 'playing'
-      And I press 'Watch' button
-		Then I should be on the 'Board' screen
-      And I should be watching
 
 	Scenario: white me moves a piece
 		Given a running game
@@ -65,42 +35,42 @@ Feature: game creation
     Given a running game
       And I am white
       And it is white turn
-      And I press 'Forfeit' button
+      And I press "Forfeit" button
       And the game ends with white wins
 
   Scenario: black me forfeits
     Given a running game
       And I am black
       And it is black turn
-      And I press 'Forfeit' button
+      And I press "Forfeit" button
       And the game ends with black wins
 
   Scenario: white me wants remis
     Given a running game
       And I am white
       And it is white turn
-      And I press 'Remis' button
+      And I press "Remis" button
     Then I need to wait for black
 
   Scenario: black me wants remis
     Given a running game
       And I am black
     When it is black turn
-      But I press 'Remis' button
+      But I press "Remis" button
     Then I need to wait for white
 
   Scenario: user accepts remis
     Given a running game
     When there is a remis request
       And it is my turn
-      And I press 'Accept' button
+      And I press "Accept" button
     Then the game ends with remis
 
   Scenario: user declines remis
     Given a running game
     When there is a remis request
       And it is my turn
-      And I press 'Decline' button
+      And I press "Decline" button
     Then the game continues
       And it is not my turn
 
