@@ -5,19 +5,19 @@ Feature: manage games
 
 	Scenario: create game
 		When I am on the "Home" screen
-      And I press "New Game" button
+      And I press the "New Game" button
 		Then I should be on the "GameEditor" screen
-      And I write "Muhkuh" in the name field
+      And I write "Muhkuh" in the "name" field
       And I press the "Create Game" button
     Then I should be on the "Home" screen
-      And in the "games" list the game "MuhKuh" should read "waiting"
+      And I should see "Muhkuh" in the game list read "waiting"
 
 	Scenario: join game
     Given in "games" list the game "MuhKuh" is "waiting"
 		When I am on the "Home" screen
-      And I press "Join" button on the "MuhKuh" game
+      And I press the "Join" button on the "MuhKuh" game
 		Then I should be on the "Board" screen
-    When I press "Play" button
+    When I press the "Play" button
       And the opponent wants to play
 		Then the game should have started
 
@@ -29,7 +29,7 @@ Feature: manage games
 	Scenario: watch game
     Given in "Games" list the game "MuhKuh" is "playing"
 		When I am on the "Home" screen
-      And I press "Watch" button
+      And I press the "Watch" button
 		Then I should be on the "Board" screen
       And I should be watching
 

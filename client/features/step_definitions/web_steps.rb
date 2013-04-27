@@ -1,14 +1,3 @@
-require 'capybara/dsl'
-
-include Capybara::DSL
-
-require 'selenium-webdriver'
-
-Capybara.default_driver = :selenium
-Capybara.app_host = 'http://chesstogo.dev'
-Capybara.register_driver :selenium do |app|
-  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-end
 
 Given(/^Someone started the game "(.*?)"$/) do |name|
   pending # express the regexp above with the code you wish you had
@@ -26,9 +15,9 @@ When(/^I choose the game "(.*?)"$/) do |name|
   pending # express the regexp above with the code you wish you had
 end
 
-When(/^I am on the "([^"]*)" screen$/) do |page|
-  page = '/app.html' if page == 'home'
-  visit(page)
+When(/^I am on the "([^"]*)" screen$/) do |route|
+  route = '' if route == APP_HOME_NAME
+  visit("/#{route}")
 end
 
 When(/^I press the "([^"]*)" button$/) do |button|
@@ -43,17 +32,17 @@ Then(/^I should see move (not)?\s?allowed$/) do |negative|
   pending # express the regexp above with the code you wish you had
 end
 
-Then(/^I should be on the "([^"]*)" screen$/) do |page|
-  page = '/app.html' if page == 'home'
-  assert_equal current_path, page
+Then(/^I should be on the "([^"]*)" screen$/) do |route|
+  route = (route == APP_HOME_NAME) ? "" : "##{route}"
+  assert_equal current_url, "#{current_host}/#{route}"
 end
 
-Then(/^I should see game "(.*?)" in the game list$/) do |name|
-  page.find('#game-list').have_content?(name)
+Then(/^I should see "([^"]*)" in the game list$/) do |name|
+  page.find('ul#game-list li').has_content?(name)
 end
 
-Then(/^the game "([^"]*)" should read "([^"]*)"$/) do |game,text|
-  page.find('#game-list li').have_content?(name)
+Then(/^I should see "([^"]*)" in the game list read "([^"]*)"$/) do |name, status|
+  page.find('ul#game-list li').has_content?("#{name} - #{status}")
 end
 
 Then(/^I should read "(.*?)" within "(.*?)"$/) do |content, selector|
