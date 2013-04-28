@@ -6,11 +6,20 @@ Feature: manage games
 	Scenario: create game
 		When I am on the "Home" screen
       And I press the "New Game" button
-		Then I should be on the "GameEditor" screen
+		Then I should be on the "Gameditor" screen
       And I write "Muhkuh" in the "name" field
-      And I press the "Create Game" button
+      And I press the "Create" button
     Then I should be on the "Home" screen
       And I should see "Muhkuh" in the game list read "waiting"
+
+  Scenario: abort game creation
+    When I am on the "Home" screen
+      And I press the "New Game" button
+    Then I should be on the "Gameditor" screen
+      And I write "Muhkuh" in the "name" field
+      And I press the "Abort" button
+    Then I should be on the "Home" screen
+      And I should not see "Muhkuh" in the game list
 
 	Scenario: join game
     Given in game list the game "MuhKuh" is "waiting"

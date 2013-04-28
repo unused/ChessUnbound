@@ -1,4 +1,4 @@
-# SEWM Chess App
+# SEWM/ST Chess App
 
 ## General Information
 

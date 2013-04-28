@@ -43,7 +43,7 @@ Ext.define('ChessUnbound.view.HomePanel', {
             {
                 xtype: 'list',
                 itemTpl: [
-                    '<div>Game {name}</div>'
+                    '<div class="game">Game {name}</div>'
                 ],
                 store: 'gamestore'
             }
