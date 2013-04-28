@@ -8,7 +8,7 @@
     "userConfig": {
         "designer|userClassName": "HomeController"
     },
-    "designerId": "f489947c-3662-4b0d-ae22-5b8f047b76c6",
+    "designerId": "5c3fc62c-9e18-47d0-a68f-64713d1b4d93",
     "cn": [
         {
             "type": "controllerref",
@@ -19,12 +19,12 @@
             "codeClass": null,
             "userConfig": {
                 "designer|userClassName": "home",
-                "autoCreate": true,
+                "autoCreate": null,
                 "ref": "home",
                 "selector": "home",
-                "xtype": "home"
+                "xtype": null
             },
-            "designerId": "ab69b4e0-f0da-4e61-bbe1-81fa6642f96a"
+            "designerId": "b42c7495-7439-4471-947d-3bc8573e524b"
         },
         {
             "type": "controllerref",
@@ -38,9 +38,28 @@
                 "autoCreate": true,
                 "ref": "gameEditor",
                 "selector": "gameeditor",
-                "xtype": "gameeditor"
+                "xtype": "gameditor"
             },
-            "designerId": "8a2907b0-eede-4b58-b4da-6b0a76034745"
+            "designerId": "189ee38f-8aeb-4715-a06f-22eb88d0a579"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onBackToHomeCommand",
+                "fn": "onBackToHomeCommand",
+                "implHandler": [
+                    "Ext.Viewport.animateActiveItem(this.getHome(), {type: 'slide', direction: 'right'});"
+                ],
+                "name": "backToHomeCommand",
+                "designer|targetType": null,
+                "designer|controlQuery": "panel"
+            },
+            "designerId": "c7c4413c-dec9-444f-9142-5a44b7c7d828"
         },
         {
             "type": "controlleraction",
@@ -52,19 +71,33 @@
             "userConfig": {
                 "designer|userClassName": "onNewGameCommand",
                 "fn": "onNewGameCommand",
-                "designer|params": [
-                    "panel"
-                ],
                 "implHandler": [
-                    "console.log(\"onNewGameCommand\");\r",
-                    "var gameEditor = this.getGameEditor();\r",
-                    "Ext.Viewport.animateActiveItem(gameEditor, ChessToGo.app.slideLeft());"
+                    "Ext.Viewport.animateActiveItem(this.getGameEditor(), {type: 'slide', direction: 'left'});"
                 ],
                 "name": "newGameCommand",
-                "designer|targetType": "Home",
+                "designer|targetType": "HomePanel",
                 "designer|controlQuery": "panel"
             },
-            "designerId": "81ef3ad2-ff13-453e-8990-5dc05d97099e"
+            "designerId": "18a7f895-e124-46ec-a9b9-c6866c658c06"
+        },
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "onCreateGameCommand",
+                "fn": "onCreateGameCommand",
+                "implHandler": [
+                    ""
+                ],
+                "name": "createGameCommand",
+                "designer|targetType": "GameEditorPanel",
+                "designer|controlQuery": "panel"
+            },
+            "designerId": "9bc602f6-2a3a-40e7-8ee4-ad1c4f1f0f34"
         }
     ]
 }

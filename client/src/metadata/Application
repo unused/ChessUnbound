@@ -6,32 +6,20 @@
     },
     "codeClass": null,
     "userConfig": {
+        "models": [
+            "Game"
+        ],
+        "stores": [
+            "GameStore"
+        ],
         "views": [
-            "GameEditorView",
-            "HomeView"
+            "HomePanel",
+            "GameEditorPanel"
         ],
         "controllers": [
             "HomeController"
         ],
-        "name": "ChessToGo"
+        "name": "ChessUnbound"
     },
-    "designerId": "application",
-    "cn": [
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|userClassName": "slideLeft",
-                "fn": "slideLeft",
-                "implHandler": [
-                    "return {type: 'slide', direction: 'left'};"
-                ]
-            },
-            "designerId": "0825f6e8-3513-4cd1-a5db-e5592096a2df"
-        }
-    ]
+    "designerId": "application"
 }

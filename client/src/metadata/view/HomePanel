@@ -1,0 +1,117 @@
+{
+    "type": "Ext.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "HomePanel",
+        "designer|userAlias": "home",
+        "designer|initialView": true,
+        "layout": "fit"
+    },
+    "designerId": "201495c7-7b20-45d5-9e7c-140e8d4f6315",
+    "cn": [
+        {
+            "type": "Ext.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "ui": null,
+                "designer|userClassName": "MyToolbar",
+                "designer|displayName": "TopToolbar",
+                "title": "ChessUnbound"
+            },
+            "designerId": "d69f926b-0b58-4737-a309-ffb27e9b939d"
+        },
+        {
+            "type": "Ext.Toolbar",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "bottom",
+                "designer|userClassName": "MyToolbar1",
+                "designer|displayName": "BottomToolbar"
+            },
+            "designerId": "75d60d02-63c3-4b94-b78a-58dbbfc310a4"
+        },
+        {
+            "type": "Ext.Button",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "docked": "top",
+                "height": "45px",
+                "itemId": "newGameBtn",
+                "designer|userClassName": "MyButton",
+                "designer|displayName": "NewGameButton",
+                "iconCls": "add",
+                "iconMask": true,
+                "text": "New Game"
+            },
+            "designerId": "c9dbd1b0-0d16-4d3f-8042-a92c1d8c410a",
+            "cn": [
+                {
+                    "type": "basiceventbinding",
+                    "reference": {
+                        "name": "listeners",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "onNewGameBtnTap",
+                        "fn": "onNewGameBtnTap",
+                        "implHandler": [
+                            "this.fireEvent(\"newGameCommand\", this);"
+                        ],
+                        "name": "tap"
+                    },
+                    "designerId": "5059638a-2d90-4a8d-93ab-9d9c906e5b68"
+                }
+            ]
+        },
+        {
+            "type": "Ext.dataview.List",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|userClassName": "MyList",
+                "designer|displayName": "GamesList",
+                "store": "gamestore"
+            },
+            "designerId": "b0d217da-b022-406e-b931-1f7f62446732",
+            "cn": [
+                {
+                    "type": "Ext.XTemplate",
+                    "reference": {
+                        "name": "itemTpl",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|userClassName": "itemTpl",
+                        "implHandler": [
+                            "<div>Game {name}</div>"
+                        ],
+                        "designer|displayName": "itemTpl"
+                    },
+                    "designerId": "4413a407-ae70-454a-a42c-4afe0df4966a"
+                }
+            ]
+        }
+    ]
+}
