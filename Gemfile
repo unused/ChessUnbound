@@ -5,6 +5,8 @@ gem 'json'
 
 gem 'sinatra'
 
+gem 'activesupport'
+
 gem 'bson_ext'
 gem 'mongoid', github: 'mongoid/mongoid'
 

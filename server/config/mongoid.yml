@@ -4,15 +4,21 @@ production:
       database: chess
       hosts:
         - localhost:27017
+  options:
+    raise_not_found_error: false
 test:
   sessions:
     default:
       database: chess_test
       hosts:
         - localhost:27017
+  options:
+    raise_not_found_error: false
 development:
   sessions:
     default:
       database: chess_dev
       hosts:
         - localhost:27017
+  options:
+    raise_not_found_error: false

@@ -1,5 +1,9 @@
 require 'jsonpath'
 
+Given(/^I am registered user "(.*?)" with key "(.*?)"$/) do |username, key|
+  User.create(username: username, key: key)
+end
+
 When /^I send a (GET|POST|PUT|DELETE) request to "([^"]*)"(?: with the following:)?$/ do |*args|
   request_type = args.shift
   path = args.shift
@@ -23,10 +27,19 @@ Then /^the response status should be (\d+)$/ do |status|
   assert_equal status.to_i, last_response.status
 end
 
+Then /^the response should have "([^"]*)"$/ do |json_path|
+  json = JSON.parse(last_response.body)
+  results = JsonPath.new(json_path).on(json).to_a.map(&:to_s)
+  assert !results.nil?
+end
 
 Then /^the response should have "([^"]*)" with "([^"]*)"$/ do |json_path, text|
   json = JSON.parse(last_response.body)
   results = JsonPath.new(json_path).on(json).to_a.map(&:to_s)
   assert results.include?(text)
+end
+
+Then(/^the user "(.*?)" with key "(.*?)"( does not)? exists?$/) do |username, key, negate|
+  assert (!!negate) ^ User.find_by(username: username, key: key)
 end
 

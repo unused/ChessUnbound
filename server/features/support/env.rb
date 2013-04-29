@@ -34,3 +34,7 @@ class ChessWorld
 end
 
 World{ChessWorld.new}
+
+# Clear the Test Database
+User.delete_all
+
