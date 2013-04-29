@@ -5,15 +5,16 @@ gem 'json'
 
 gem 'sinatra'
 
-# Mongoid ?
-# gem 'bson_ext'
-# gem 'mongoid', github: 'mongoid/mongoid'
+gem 'bson_ext'
+gem 'mongoid', github: 'mongoid/mongoid'
 
 group :test do
   gem 'cucumber'
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'minitest'
+  gem 'jsonpath'
+  gem 'webrat'
 end
 
 group :test, :development do

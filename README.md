@@ -16,24 +16,24 @@ bdd: cucumber with selenium
 
 BDD Client:
 
-* Registration (Prio 3)
-* Login (Prio 3)
-* Guest-Login (Prio 2, really needed?)
-* Choose Session (Prio 1)
-* Create Game (Prio 1)
-* Connect to Game (Prio 1)
-* Configure Game (Prio 2)
-* Do valid move (Prio 2)
-* Do invalid move (Prio 2)
+* Registration (priority 3)
+* Login (priority 3)
+* Guest-Login (priority 2, really needed?)
+* Choose Session (priority 1)
+* Create Game (priority 1)
+* Connect to Game (priority 1)
+* Configure Game (priority 2)
+* Do valid move (priority 2)
+* Do invalid move (priority 2)
 
 BDD Server:
 
-* Do invalid move (Prio 2)
-* Do valid move (Prio 2)
-* Registration (Prio 3)
-* Login (Prio 3)
-* List Sessions (Prio 1)
-* Create Session (Prio 1)
+* Do invalid move (priority 2)
+* Do valid move (priority 2)
+* Registration (priority 3)
+* Login (priority 3)
+* List Sessions (priority 1)
+* Create Session (priority 1)
 
 ## Other Information
 

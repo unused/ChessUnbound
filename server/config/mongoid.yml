@@ -1,0 +1,18 @@
+production:
+  sessions:
+    default:
+      database: chess
+      hosts:
+        - localhost:27017
+test:
+  sessions:
+    default:
+      database: chess_test
+      hosts:
+        - localhost:27017
+development:
+  sessions:
+    default:
+      database: chess_dev
+      hosts:
+        - localhost:27017
