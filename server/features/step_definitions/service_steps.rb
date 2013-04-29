@@ -1,9 +1,6 @@
 require 'jsonpath'
 
-Given(/^I am registered user "(.*?)" with key "(.*?)"$/) do |username, key|
-  User.create(username: username, key: key)
-end
-
+# Service steps
 When /^I send a (GET|POST|PUT|DELETE) request to "([^"]*)"(?: with the following:)?$/ do |*args|
   request_type = args.shift
   path = args.shift
@@ -39,7 +36,15 @@ Then /^the response should have "([^"]*)" with "([^"]*)"$/ do |json_path, text|
   assert results.include?(text)
 end
 
-Then(/^the user "(.*?)" with key "(.*?)"( does not)? exists?$/) do |username, key, negate|
-  assert (!!negate) ^ User.find_by(username: username, key: key)
+Then /^the response should have the following data:$/  do |response|
+  json_data = JSON.parse(last_response.body)
+  response.hashes.each do |row|
+    found = false
+    json_data.each do |data|
+      data.select! { |k,v| row.keys.include? k }
+      found = true if data.sort == row.sort
+    end
+    assert found, "Response did not have data: #{row}"
+  end
 end
 

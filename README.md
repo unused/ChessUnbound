@@ -1,12 +1,16 @@
 # SEWM/ST Chess App
 
+Students project for [TU-Graz][1]
+
 ## General Information
 
-client: sencha touch
+client: sencha touch as mobile client
 
-server: sinatra
+server: sinatra for web services
 
 bdd: cucumber with selenium
+
+tdd: sencha unit-tests and ruby minitests
 
 ## Setup
 
@@ -39,10 +43,10 @@ BDD Server:
 
 * Games should be choosen short (1 week) or long (3 weeks)
 * Validate moves client- and server-side
-* Store game position with [FEN][1] notation
+* Store game position with [FEN][2] notation
 * Notify if a move was made
 
 
-[1]: http://en.wikipedia.org/wiki/Board_representation_(chess)#Forsyth-Edwards_Notation_.28FEN.29
-
+[1]: http://portal.tugraz.at/
+[2]: http://en.wikipedia.org/wiki/Board_representation_(chess)#Forsyth-Edwards_Notation_.28FEN.29
 

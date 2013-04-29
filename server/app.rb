@@ -5,7 +5,9 @@ require 'mongoid'
 
 Mongoid.load! File.join(settings.root, 'config', 'mongoid.yml')
 
-require File.join(settings.root, 'app/models/user.rb')
+%w(game user).each do |model|
+  require File.join(settings.root, "app/models/#{model}.rb")
+end
 
 helpers do
   def protect!
@@ -36,5 +38,11 @@ end
 put '/user' do
   protect!
   authorized_user.update_attribute(:username, params[:new_username])
+end
+
+get '/games' do
+  games = Game.where(
+    '$or' => [{ black: params[:username] }, { white: params[:username] }])
+  games.to_json
 end
 

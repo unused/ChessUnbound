@@ -1,7 +1,9 @@
 require 'active_support'
 
+# registered ChessUnbound user
 class User
 	include Mongoid::Document
+  include Mongoid::Timestamps
 
   KEY_LENGTH = 26
   GUEST_NAME = 'Guest'
