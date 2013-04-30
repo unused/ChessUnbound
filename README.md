@@ -15,6 +15,7 @@ tdd: sencha unit-tests and ruby minitests
 ## Setup
 
     $ bundle install
+    $ rake db:create_indexes[production]
 
 ## User-Stories
 

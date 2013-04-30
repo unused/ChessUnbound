@@ -11,6 +11,9 @@ class User
 	field :username, type: String
 	field :key, type: String
 
+  validates :username, uniqueness: true
+  index({ username: 1 }, { unique: true })
+
   def as_json(options=nil)
     super({only: [:username,:key]}.merge(options))
   end

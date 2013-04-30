@@ -30,19 +30,30 @@ before do
 end
 
 # create new guest user
+#   no params
+# response: generated username
 post '/user' do
   user = User.generate
   user.to_json
 end
 
+# create new guest user
+#   :username, String
+#   :key, String
+#   :new_username, String
+# response: username
 put '/user' do
   protect!
-  authorized_user.update_attribute(:username, params[:new_username])
+  user = authorized_user
+  user.username = params[:new_username]
+  {username: params[user.save ? :new_username : :username]}.to_json
 end
 
+# get a list of games
+#   :username, String
+#   :key, String
 get '/games' do
-  games = Game.where(
-    '$or' => [{ black: params[:username] }, { white: params[:username] }])
+  games = Game.find_by_username(params[:username])
   games.to_json
 end
 

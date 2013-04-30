@@ -35,7 +35,3 @@ end
 
 World{ChessWorld.new}
 
-# Clear the Test Database
-Game.delete_all
-User.delete_all
-

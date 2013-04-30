@@ -18,4 +18,8 @@ Given /^the following list of games:$/  do |games|
   end
 end
 
+Given /^the game "([^"]*)"$/  do |game|
+  Game.create(name: game, fen: TEST_GAME_FEN)
+end
+
 

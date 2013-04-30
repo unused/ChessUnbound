@@ -27,4 +27,21 @@ namespace :features do
   end
 end
 
+namespace :db do
+  task :create_indexes, :env do |t, args|
+    unless args[:env]
+      puts "Must provide an environment"
+      exit
+    end
+
+    Mongoid.load!('server/config/mongoid.yml', args[:env])
+
+    require File.join(File.dirname(__FILE__), "server/app/models/user.rb")
+    require File.join(File.dirname(__FILE__), "server/app/models/game.rb")
+
+    Game.create_indexes
+    User.create_indexes
+  end
+end
+
 
