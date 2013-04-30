@@ -20,7 +20,7 @@ class User
 
   def self.generate
     begin
-      username = "#{GUEST_NAME}#{SecureRandom.random_number(8)}"
+      username = "#{GUEST_NAME}#{SecureRandom.random_number(1000000)}"
     end while User.find_by(username: username)
     User.create(username: username, key: User.generate_key)
   end
