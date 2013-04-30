@@ -22,4 +22,14 @@ Given /^the game "([^"]*)"$/  do |game|
   Game.create(name: game, fen: TEST_GAME_FEN)
 end
 
+Given /^there is a game with id "([^"]*)" waiting$/ do |game_id|
+  game = { fen: INIT_FEN, _id: game_id }
+  if @user && [true,false].sample
+    game[:black] = @user.username
+  else
+    game[:white] = @user.username
+  end
+  Game.create(game)
+end
+
 

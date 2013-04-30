@@ -2,12 +2,14 @@ require 'jsonpath'
 
 # Service steps
 When /^I send a (GET|POST|PUT|DELETE) request to "([^"]*)"(?: with the following:)?$/ do |*args|
-  request_type = args.shift
+
+  options = {
+    params: {},
+    method: args.shift.downcase.to_sym
+  }
+
   path = args.shift
   input = args.shift
-
-  options = {}
-  options[:method] = request_type.downcase.to_sym
 
   unless input.nil?
     if input.class == Cucumber::Ast::Table
@@ -15,6 +17,13 @@ When /^I send a (GET|POST|PUT|DELETE) request to "([^"]*)"(?: with the following
     else
       options[:input] = input
     end
+  end
+
+  unless @user.nil?
+    options[:params].merge!({
+      username: @user.username,
+      key: @user.key
+    })
   end
 
   request path, options
@@ -27,7 +36,7 @@ end
 Then /^the response should have "([^"]*)"$/ do |json_path|
   json = JSON.parse(last_response.body)
   results = JsonPath.new(json_path).on(json).to_a.map(&:to_s)
-  assert !results.nil?
+  assert !results.empty?, "JSON data does not contain #{json_path}"
 end
 
 Then /^the response should have "([^"]*)" with "([^"]*)"$/ do |json_path, text|
@@ -44,7 +53,7 @@ Then /^the response should have the following data:$/  do |response|
       data.select! { |k,v| row.keys.include? k }
       found = true if data.sort == row.sort
     end
-    assert found, "Response did not have data: #{row}"
+    assert found, "response #{json_data} did not have data: #{row}"
   end
 end
 

@@ -10,6 +10,7 @@ Mongoid.load! File.join(settings.root, 'config', 'mongoid.yml')
 end
 
 helpers do
+  # authentication!
   def protect!
     return if authorized?
     halt 401, "Not authorized\n"
@@ -37,8 +38,7 @@ post '/user' do
 end
 
 # create new guest user
-#   :username, String
-#   :key, String
+#   authentication!
 #   :new_username, String
 # response: username
 put '/user' do
@@ -49,16 +49,21 @@ put '/user' do
 end
 
 # get a list of games
-#   :username, String
-#   :key, String
+#   authentication!
 get '/games' do
   protect!
   games = Game.find_by_username(params[:username])
   games.to_json
 end
 
+# create a new game
+#   authentication!
 post '/game' do
   protect!
+  game = {}
+  rand_color = [true,false].sample ? :black : :white
+  game[rand_color] = authorized_user.username
+  Game.create(game).to_json
 end
 
 

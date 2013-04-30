@@ -23,7 +23,7 @@ Feature: game management
     Given I am authenticated as "Jürgen"
     When I send a POST request to "/game"
     Then the response status should be 200
-      And the response should have "id"
+      And the response should have "_id"
 
   Scenario: join waiting game
     Given I am authenticated as "Philipp"
