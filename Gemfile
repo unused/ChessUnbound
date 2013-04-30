@@ -17,6 +17,7 @@ group :test do
   gem 'minitest'
   gem 'jsonpath'
   gem 'webrat'
+  gem 'simplecov'
 end
 
 group :test, :development do

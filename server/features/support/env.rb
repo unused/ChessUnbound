@@ -1,3 +1,5 @@
+require 'simplecov'
+
 ENV['RACK_ENV'] = 'test'
 
 app_file = File.join(File.dirname(__FILE__), *%w[.. .. app.rb])
