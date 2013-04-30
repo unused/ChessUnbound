@@ -30,3 +30,8 @@ Feature: user management
       And the user "Philipp" with key "cd3718b167c2462bf86d16d9246c02dc06ae8cb8e6d6a03966c9" does not exist
       And the user "Guest89715" with key "cd3718b167c2462bf86d16d9246c02dc06ae8cb8e6d6a03966c9" exists
       And the response should have "username" with "Guest89715"
+
+  Scenario: you shall not pass
+    When I send a POST request to "/game"
+    Then the response status should be 401
+

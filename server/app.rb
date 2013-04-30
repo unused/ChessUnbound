@@ -12,7 +12,6 @@ end
 helpers do
   def protect!
     return if authorized?
-    headers['WWW-Authenticate'] = 'Basic realm="Restricted Area"'
     halt 401, "Not authorized\n"
   end
 
@@ -53,7 +52,13 @@ end
 #   :username, String
 #   :key, String
 get '/games' do
+  protect!
   games = Game.find_by_username(params[:username])
   games.to_json
 end
+
+post '/game' do
+  protect!
+end
+
 

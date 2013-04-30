@@ -1,5 +1,6 @@
 Feature: game management
 
+  @clean_database
   Scenario: list games
     Given the following list of games:
       | black     | white      |
