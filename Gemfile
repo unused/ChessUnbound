@@ -12,6 +12,10 @@ gem 'mongoid', github: 'mongoid/mongoid'
 
 gem 'chess'
 
+# 404
+gem 'feedzirra'
+gem 'nokogiri'
+
 group :test do
   gem 'cucumber'
   gem 'capybara'
@@ -21,6 +25,10 @@ group :test do
   gem 'webrat'
   gem 'simplecov'
   gem 'faker'
+end
+
+group :development do
+  gem 'rake-notes'
 end
 
 group :test, :development do

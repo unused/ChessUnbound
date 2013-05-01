@@ -50,22 +50,24 @@ put '/user' do
   {username: params[user.save ? :new_username : :username]}.to_json
 end
 
+# create a new game
+#   authentication!
+#   :name, String, optional
+post '/game' do
+  protect!
+  game = {}
+  rand_color = [true,false].sample ? :black : :white
+  game[rand_color] = authorized_user.username
+  game[:name] = params[:name] if params.has_key? :name
+  Game.create(game).to_json
+end
+
 # get a list of games
 #   authentication!
 get '/games' do
   protect!
   games = Game.find_by_username(params[:username])
   games.to_json
-end
-
-# create a new game
-#   authentication!
-post '/game' do
-  protect!
-  game = {}
-  rand_color = [true,false].sample ? :black : :white
-  game[rand_color] = authorized_user.username
-  Game.create(game).to_json
 end
 
 # join a waiting game
@@ -85,6 +87,7 @@ post '/move/:game_id/:move' do
   protect!
   game = Game.find(params[:game_id])
   raise "game is not playing" unless game.playing?
+  # TODO check authenticated is playing the game
   chess = Chess::Game.load_fen game.fen
   valid = begin
       chess.move params[:move]
@@ -100,4 +103,15 @@ post '/move/:game_id/:move' do
   }.to_json
 end
 
+not_found do
+  content_type 'text/html'
+  require 'feedzirra'
+  require 'nokogiri'
+  feed = Feedzirra::Feed.fetch_and_parse("http://imgur.com/r/funny/rss")
+  img_src = Nokogiri::HTML.parse(feed.entries.first.summary).css('img').first['src']
+  img = "<img src=\"#{img_src}\" />"
+  header = "<h1>404</h1>"
+  subheader = "<h2>path not found, showing latest image of imgur.com/r/funny instead</h2>"
+  "<html><body style=\"font-size:250%\"><center>#{header}#{subheader}<br/>#{img}</center></body></html>"
+end
 

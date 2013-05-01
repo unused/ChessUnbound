@@ -2,6 +2,7 @@ require File.expand_path('../config/config.rb', __FILE__)
 
 require 'rake/testtask'
 require 'cucumber/rake/task'
+require 'rake/notes/rake_task'
 
 task :default => 'features'
 

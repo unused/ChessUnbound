@@ -18,6 +18,7 @@ class Game
     super({only: [:_id,:black,:white,:fen]}.merge(options))
   end
 
+  # TODO: store user_id instead of name, to keeb relation when user is renamed
   def add_player(username)
     if self.white.nil?
       self.white = username

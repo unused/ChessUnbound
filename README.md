@@ -1,6 +1,6 @@
 # SEWM/ST Chess App
 
-Students project for [TU-Graz][1]
+Students project for [TU-Graz][tug]
 
 ## General Information
 
@@ -12,42 +12,57 @@ bdd: cucumber with selenium
 
 tdd: sencha unit-tests and ruby minitests
 
-## Setup
+## Features
+
+* Validate moves client- and server-side
+
+## Server Setup
 
     $ bundle install
     $ rake db:create_indexes[production]
 
-## User-Stories
+## Server API
 
-BDD Client:
+Authenticate by sending valid username and key parameter
 
-* Registration (priority 3)
-* Login (priority 3)
-* Guest-Login (priority 2, really needed?)
-* Choose Session (priority 1)
-* Create Game (priority 1)
-* Connect to Game (priority 1)
-* Configure Game (priority 2)
-* Do valid move (priority 2)
-* Do invalid move (priority 2)
+Game positions are stored using the [FEN][fen] notation
 
-BDD Server:
+The possible game status can be found at the ruby-chess library [documentation][rchess]
 
-* Do invalid move (priority 2)
-* Do valid move (priority 2)
-* Registration (priority 3)
-* Login (priority 3)
-* List Sessions (priority 1)
-* Create Session (priority 1)
+    /user [post]
+      generate a new guest user
+      response: { username:string, key:string }
 
-## Other Information
+    /user [put]
+      rename a user
+      request: username:string
+      response: { username:string }
 
-* Games should be choosen short (1 week) or long (3 weeks)
-* Validate moves client- and server-side
-* Store game position with [FEN][2] notation
-* Notify if a move was made
+    /game [post] !authenticated
+      start a new game
+      request: name:string (optional)
+      response: { game: { _id:string, black:string, white:string, fen:string } }
+
+    /games [get] !authenticate
+      games list of authenticated user
+      response: { [ game, game, ... ] }
+
+    /game/join/:game_id [post] !authenticate
+      join a waiting game
+
+    /move/:game_id/:move [post] !authenticate
+      move a piece
+      response: { valid:true|false, status:string, fen:string }
+
+## Development
+
+    bundle exec rake features:client # run client behaviour test
+    bundle exec rake features:server # run server behaviour test
+    bundle exec rake test # run server unit-test
+    bundle exec rake notes # see implementation notes
 
 
-[1]: http://portal.tugraz.at/
-[2]: http://en.wikipedia.org/wiki/Board_representation_(chess)#Forsyth-Edwards_Notation_.28FEN.29
+[tug]: http://portal.tugraz.at/ "tu-graz"
+[fen]: http://en.wikipedia.org/wiki/Board_representation_(chess)#Forsyth-Edwards_Notation_.28FEN.29 "fen notation"
+[rchess]: http://www.rubydoc.info/github/pioz/chess/index "ruby pioz/chess"
 
