@@ -4,6 +4,7 @@ gem 'rake'
 gem 'json'
 
 gem 'sinatra'
+gem 'sinatra-cross_origin'
 
 gem 'activesupport'
 

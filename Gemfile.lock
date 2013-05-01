@@ -95,6 +95,7 @@ GEM
       rack (~> 1.5, >= 1.5.2)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
+    sinatra-cross_origin (0.2.0)
     slop (3.4.4)
     thread_safe (0.1.0)
       atomic
@@ -130,4 +131,5 @@ DEPENDENCIES
   selenium-webdriver
   simplecov
   sinatra
+  sinatra-cross_origin
   webrat

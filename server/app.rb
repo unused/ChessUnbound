@@ -1,11 +1,19 @@
 
 # OPTIMIZE: move to config file
 require 'sinatra'
+require 'sinatra/cross_origin'
 require 'mongoid'
 require 'chess'
 
 set :root, File.dirname(__FILE__)
 Mongoid.load! File.join(settings.root, 'config', 'mongoid.yml')
+
+module Sinatra
+    register CrossOrigin
+end
+configure do
+  enable :cross_origin
+end
 
 %w(game user).each do |model|
   require File.join(settings.root, "app/models/#{model}.rb")
@@ -29,6 +37,7 @@ end
 
 before do
   content_type 'application/json'
+  headers['Access-Control-Allow-Origin'] = '*'
 end
 
 # create new guest user
