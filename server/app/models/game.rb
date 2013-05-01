@@ -28,6 +28,14 @@ class Game
     end
   end
 
+  def waiting?
+    status == 'waiting'
+  end
+
+  def playing?
+    status == 'playing'
+  end
+
   def self.create(game)
     super({ fen: INIT_FEN, status: 'waiting' }.merge game)
   end

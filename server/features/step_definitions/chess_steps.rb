@@ -9,6 +9,7 @@
 # 1 R N B . K . N R
 #   a b c d e f g h
 
+# chess-mate: f3d7
 
 TEST_GAME_FEN = "r1bqkbnr/ppp2ppp/2np4/4p3/2B1P3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 0 4"
 
@@ -19,7 +20,7 @@ Given /^the following list of games:$/  do |games|
 end
 
 Given /^the game "([^"]*)"$/  do |game|
-  Game.create(name: game, fen: TEST_GAME_FEN)
+  Game.create(_id: game, fen: TEST_GAME_FEN, status: 'playing')
 end
 
 Given /^there is a game with id "([^"]*)" waiting$/ do |game_id|

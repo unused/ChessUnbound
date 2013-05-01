@@ -10,6 +10,8 @@ gem 'activesupport'
 gem 'bson_ext'
 gem 'mongoid', github: 'mongoid/mongoid'
 
+gem 'chess'
+
 group :test do
   gem 'cucumber'
   gem 'capybara'

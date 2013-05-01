@@ -42,5 +42,14 @@ describe Game do
     }.must_raise(RuntimeError)
   end
 
+  it "respond on its status" do
+    game = Game.new(status: 'playing')
+    game.playing?.must_equal true
+    game.waiting?.must_equal false
+    game.status = 'waiting'
+    game.playing?.must_equal false
+    game.waiting?.must_equal true
+  end
+
 end
 

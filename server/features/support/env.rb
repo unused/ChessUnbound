@@ -33,6 +33,10 @@ class ChessWorld
   def app
     Sinatra::Application
   end
+
+  def authenticate
+    puts 'called!!!'
+  end
 end
 
 World{ChessWorld.new}

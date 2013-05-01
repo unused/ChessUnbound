@@ -1,8 +1,10 @@
 
+# OPTIMIZE: move to config file
 require 'sinatra'
-set :root, File.dirname(__FILE__)
 require 'mongoid'
+require 'chess'
 
+set :root, File.dirname(__FILE__)
 Mongoid.load! File.join(settings.root, 'config', 'mongoid.yml')
 
 %w(game user).each do |model|
@@ -71,9 +73,31 @@ end
 post '/game/join/:game_id' do
   protect!
   game = Game.find(params[:game_id])
-  raise "game is not waiting" unless game.status == 'waiting'
+  raise "game is not waiting" unless game.waiting?
   game.add_player authorized_user.username
   game.save
+end
+
+# make a move
+#   authentication!
+# response: valid, status, fen
+post '/move/:game_id/:move' do
+  protect!
+  game = Game.find(params[:game_id])
+  raise "game is not playing" unless game.playing?
+  chess = Chess::Game.load_fen game.fen
+  valid = begin
+      chess.move params[:move]
+      true
+    rescue Chess::IllegalMoveError
+      false
+    end
+  game.update_attributes(status: 'finished') if chess.over?
+  response = {
+    valid: valid,
+    status: chess.status,
+    fen: chess.board.to_fen
+  }.to_json
 end
 
 
