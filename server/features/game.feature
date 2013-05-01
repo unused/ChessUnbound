@@ -19,16 +19,17 @@ Feature: game management
       | Christoph | Philipp    |
       | Philipp   | Guest89715 |
 
+  @clean_database
   Scenario: create new game
     Given I am authenticated as "Jürgen"
     When I send a POST request to "/game"
     Then the response status should be 200
       And the response should have "_id"
 
+  @clean_database
   Scenario: join waiting game
     Given I am authenticated as "Philipp"
       And there is a game with id "test_game_id" waiting
-    When I send a POST request to "/game/join" with the following:
-      | id | "test_game_id" |
+    When I send a POST request to "/game/join/test_game_id"
     Then the response status should be 200
 

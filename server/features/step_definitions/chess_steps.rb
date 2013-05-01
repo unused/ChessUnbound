@@ -23,7 +23,7 @@ Given /^the game "([^"]*)"$/  do |game|
 end
 
 Given /^there is a game with id "([^"]*)" waiting$/ do |game_id|
-  game = { fen: INIT_FEN, _id: game_id }
+  game = { _id: game_id }
   if @user && [true,false].sample
     game[:black] = @user.username
   else

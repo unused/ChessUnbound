@@ -18,6 +18,7 @@ group :test do
   gem 'jsonpath'
   gem 'webrat'
   gem 'simplecov'
+  gem 'faker'
 end
 
 group :test, :development do

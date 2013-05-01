@@ -66,4 +66,14 @@ post '/game' do
   Game.create(game).to_json
 end
 
+# join a waiting game
+#   authentication!
+post '/game/join/:game_id' do
+  protect!
+  game = Game.find(params[:game_id])
+  raise "game is not waiting" unless game.status == 'waiting'
+  game.add_player authorized_user.username
+  game.save
+end
+
 

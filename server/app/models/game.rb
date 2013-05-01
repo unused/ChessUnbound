@@ -12,15 +12,24 @@ class Game
   field :fen, type: String
   field :status, type: String
 
-  # validates :status, inclusion: { in: STATUS }
-
-  # def create(game)
-  #   game.merge!(fen: INIT_FEN, status: 'waiting')
-  #   super game
-  # end
+  validates :status, inclusion: { in: STATUS }
 
   def as_json(options=nil)
     super({only: [:_id,:black,:white,:fen]}.merge(options))
+  end
+
+  def add_player(username)
+    if self.white.nil?
+      self.white = username
+    elsif self.black.nil?
+      self.black = username
+    else
+      raise "game has too many player"
+    end
+  end
+
+  def self.create(game)
+    super({ fen: INIT_FEN, status: 'waiting' }.merge game)
   end
 
   def self.find_by_username(username)
