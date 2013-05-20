@@ -35,6 +35,8 @@ helpers do
   end
 end
 
+set :protection, :except => [:json_csrf]
+
 before do
   content_type 'application/json'
   headers['Access-Control-Allow-Origin'] = '*'
