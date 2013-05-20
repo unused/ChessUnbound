@@ -29,16 +29,15 @@ Game positions are stored using the [FEN][fen] notation
 
 The possible game status can be found at the ruby-chess library [documentation][rchess]
 
-    /user [post]
-      generate a new guest user
-      response: { username:string, key:string }
+    /user [get]
+        generate a new guest user
+        response: { username:string, key:string }
+      or
+        rename a user
+        request: username:string
+        response: { username:string }
 
-    /user [put]
-      rename a user
-      request: username:string
-      response: { username:string }
-
-    /game [post] !authenticated
+    /game [get] !authenticated
       start a new game
       request: name:string (optional)
       response: { game: { _id:string, black:string, white:string, fen:string } }
@@ -47,10 +46,10 @@ The possible game status can be found at the ruby-chess library [documentation][
       games list of authenticated user
       response: { [ game, game, ... ] }
 
-    /game/join/:game_id [post] !authenticate
+    /game/join/:game_id [get] !authenticate
       join a waiting game
 
-    /move/:game_id/:move [post] !authenticate
+    /move/:game_id/:move [get] !authenticate
       move a piece
       response: { valid:true|false, status:string, fen:string }
 
