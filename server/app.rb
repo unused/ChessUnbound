@@ -42,29 +42,29 @@ before do
   headers['Access-Control-Allow-Origin'] = '*'
 end
 
-# create new guest user
-#   no params
+# create new guest user or change username
+#     no params
+#   or
+#     authentication!
+#     :new_username, String
 # response: generated username
-post '/user' do
-  user = User.generate
-  user.to_json
-end
-
-# create new guest user
-#   authentication!
-#   :new_username, String
-# response: username
-put '/user' do
-  protect!
-  user = authorized_user
-  user.username = params[:new_username]
-  {username: params[user.save ? :new_username : :username]}.to_json
+get '/user' do
+  unless params.has_key? "new_username"
+    user = User.generate
+    user.to_json
+  else
+    protect!
+    user = authorized_user
+    user.username = params[:new_username]
+    {username: params[user.save ? :new_username : :username]}.to_json
+  end
 end
 
 # create a new game
 #   authentication!
 #   :name, String, optional
-post '/game' do
+# response: created game
+get '/game' do
   protect!
   game = {}
   rand_color = [true,false].sample ? :black : :white
@@ -75,6 +75,7 @@ end
 
 # get a list of games
 #   authentication!
+# response: games
 get '/games' do
   protect!
   games = Game.find_by_username(params[:username])
@@ -83,7 +84,8 @@ end
 
 # join a waiting game
 #   authentication!
-post '/game/join/:game_id' do
+# response: success
+get '/game/join/:game_id' do
   protect!
   game = Game.find(params[:game_id])
   raise "game is not waiting" unless game.waiting?
@@ -94,7 +96,7 @@ end
 # make a move
 #   authentication!
 # response: valid, status, fen
-post '/move/:game_id/:move' do
+get '/move/:game_id/:move' do
   protect!
   game = Game.find(params[:game_id])
   raise "game is not playing" unless game.playing?

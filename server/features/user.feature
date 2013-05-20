@@ -1,7 +1,7 @@
 Feature: user management
 
   Scenario: create user
-    When I send a POST request to "/user"
+    When I send a GET request to "/user"
     Then the response should have "username"
       And the response should have "key"
 
