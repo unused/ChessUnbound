@@ -7,7 +7,7 @@ Feature: playing chess
   Scenario: valid move
     Given the game "gameid"
       And I am authenticated as "Harald"
-    When I send a POST request to "/move/gameid/f3f6"
+    When I send a GET request to "/move/gameid/f3f6"
     Then the response status should be 200
       And the response should have "valid" with "true"
       And the response should have "fen"
@@ -16,7 +16,7 @@ Feature: playing chess
   Scenario: invalid move
     Given the game "gameid"
       And I am authenticated as "Harald"
-    When I send a POST request to "/move/gameid/f3f8"
+    When I send a GET request to "/move/gameid/f3f8"
     Then the response status should be 200
       And the response should have "valid" with "false"
       And the response should have "fen"

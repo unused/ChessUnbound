@@ -8,7 +8,7 @@ Feature: user management
   @clean_database
   Scenario: set username
     Given I am registered user "Guest89715" with key "cd3718b167c2462bf86d16d9246c02dc06ae8cb8e6d6a03966c9"
-    When I send a PUT request to "/user" with the following:
+    When I send a GET request to "/user" with the following:
        | username | Guest89715 |
        | key | cd3718b167c2462bf86d16d9246c02dc06ae8cb8e6d6a03966c9 |
        | new_username | Philipp |
@@ -21,7 +21,7 @@ Feature: user management
   Scenario: set username
     Given I am registered user "Guest89715" with key "cd3718b167c2462bf86d16d9246c02dc06ae8cb8e6d6a03966c9"
       And I am registered user "Philipp" with key "792c37323fcd9502de89b328f4c0a472c6f001878875547bd0eb"
-    When I send a PUT request to "/user" with the following:
+    When I send a GET request to "/user" with the following:
        | username | Guest89715 |
        | key | cd3718b167c2462bf86d16d9246c02dc06ae8cb8e6d6a03966c9 |
        | new_username | Philipp |
@@ -32,6 +32,6 @@ Feature: user management
       And the response should have "username" with "Guest89715"
 
   Scenario: you shall not pass
-    When I send a POST request to "/game"
+    When I send a GET request to "/game"
     Then the response status should be 401
 
