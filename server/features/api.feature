@@ -7,3 +7,7 @@ Feature: communicating with the api
     When I send a GET request to "/notfoundpath"
     Then the response status should be 404
 
+  Scenario: responds with callback
+    When I send a GET request to "/user"
+    Then the response body should match "/^my_callback([.]*)$"
+

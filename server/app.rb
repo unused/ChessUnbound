@@ -1,5 +1,4 @@
 
-# OPTIMIZE: move to config file
 require 'sinatra'
 require 'sinatra/cross_origin'
 require 'mongoid'
@@ -42,6 +41,12 @@ before do
   headers['Access-Control-Allow-Origin'] = '*'
 end
 
+after do
+  unless params[:callback].nil?
+    response.body = "#{params[:callback]}(#{response.body.join("\n")})"
+  end
+end
+
 # create new guest user or change username
 #     no params
 #   or
@@ -57,6 +62,7 @@ get '/user' do
     user = authorized_user
     user.username = params[:new_username]
     {username: params[user.save ? :new_username : :username]}.to_json
+    # TODO rename user in games too
   end
 end
 
