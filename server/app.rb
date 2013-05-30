@@ -22,7 +22,7 @@ helpers do
   # authentication!
   def protect!
     return if authorized?
-    halt 401, "Not authorized\n"
+    halt 401, "Not authorized"
   end
 
   def authorized?
@@ -75,7 +75,7 @@ get '/game' do
   game = {}
   rand_color = [true,false].sample ? :black : :white
   game[rand_color] = authorized_user.username
-  game[:name] = params[:name] if params.has_key? :name
+  game[:name] = params[:name] || 'chess-unbound'
   Game.create(game).to_json
 end
 

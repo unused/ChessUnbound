@@ -10,6 +10,7 @@ class Game
 	field :black, type: String
 	field :white, type: String
   field :fen, type: String
+  field :name, type: String
   field :status, type: String
 
   validates :status, inclusion: { in: STATUS }
