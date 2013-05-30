@@ -34,6 +34,7 @@ Ext.define('ChessUnbound.view.GameEditorPanel', {
                     {
                         xtype: 'textfield',
                         label: 'Name',
+                        itemId: 'nameField',
                         name: 'name'
                     }
                 ]
