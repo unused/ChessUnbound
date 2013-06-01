@@ -5,21 +5,17 @@ Ext.Loader.setConfig({
 });
 
 Ext.application({
-  models: [
-    'Game',
-    'User'
-  ],
-  stores: [
-    'GameStore'
-  ],
+  name: 'ChessUnbound',
+  requires: ['ChessUnbound.proxy.Game'],
+
+  models: ['Game', 'User'],
+  stores: ['GameStore'],
   views: [
     'HomePanel',
-    'GameEditorPanel'
+    'GameEditorPanel',
+    'GamePanel'
   ],
-  controllers: [
-    'HomeController'
-  ],
-  name: 'ChessUnbound',
+  controllers: ['HomeController'],
 
   user: '',
 
