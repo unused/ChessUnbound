@@ -19,11 +19,18 @@ Ext.define("ChessUnbound.view.GameBoard", {
       title: "chess board",
       items: [ backButton ]
     };
-    var fen = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
     var chessBoard = {
       xtype: "container",
-      html: ChessUnbound.ChessBoard.htmlByFen(fen)
+      itemId: "chessboard",
+      html: ''
     }
     this.add( [ topToolbar, chessBoard ] );
+  },
+
+  init: function() {
+    var me = this,
+      game = me.getRecord()
+      board = me.getComponent('chessboard');
+    board.set('html', ChessUnbound.ChessBoard.htmlByFen(game.get('fen')));
   }
 });

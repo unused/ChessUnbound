@@ -57,8 +57,6 @@ Ext.define('ChessUnbound.ChessBoard', {
         piece = "&#9813;";
         break;
       default:
-        console.log(notation);
-        console.log(parseInt(notation));
         piece = "&nbsp;</td><td>&nbsp;".repeat(parseInt(notation - 1));
     }
     return piece;

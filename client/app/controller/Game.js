@@ -43,6 +43,7 @@ Ext.define("ChessUnbound.controller.Game", {
   openGameBoard: function (record) {
     var gameBoard = this.getGameBoard();
     gameBoard.setRecord(record);
+    gameBoard.init();
     Ext.Viewport.animateActiveItem(gameBoard, {type: 'slide', direction: 'left'});
   },
 
