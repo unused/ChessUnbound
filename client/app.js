@@ -1,26 +1,66 @@
 
 //@require @packageOverrides
 Ext.Loader.setConfig({
-
 });
 
 Ext.application({
   name: 'ChessUnbound',
-  requires: ['ChessUnbound.proxy.Game'],
-
-  models: ['Game', 'User'],
-  stores: ['GameStore'],
-  views: [
-    'HomePanel',
-    'GameEditorPanel',
-    'GamePanel'
+  requires: [
+    'ChessUnbound.proxy.Game'
   ],
-  controllers: ['HomeController'],
 
-  user: '',
+  models: [
+    'Game',
+    'User'
+  ],
+  stores: [
+    'Games'
+  ],
+  views: [
+    'GameBoard',
+    'GameEditor',
+    'GamesList',
+    'GamesListContainer'
+  ],
+  controllers: [
+    'Game'
+  ],
+
+  user: undefined, // app user, autologged in at init
 
   launch: function() {
-    Ext.create('ChessUnbound.view.HomePanel', {fullscreen: true});
+    this.autoLogIn();
+
+    var gamesListContainer = { xtype: 'gameslistcontainer' };
+    Ext.Viewport.add(gamesListContainer);
+  },
+
+  autoLogIn: function() {
+    var me = this;
+    console.log('autologin');
+    Ext.ModelMgr.getModel('ChessUnbound.model.User').load('ext-record-1', {
+      success: function(user) { ChessUnbound.app.user = user; },
+      failure: function() { me.createUser(); } // does not block!?
+    });
+    console.log(ChessUnbound.app.user.get('username'));
+    var games = Ext.getStore('Games');
+    games.load();
+  },
+
+  createUser: function() {
+    Ext.data.JsonP.request({
+      url: 'http://localhost:4567/user',
+      callbackKey: 'callback',
+
+      callback: function(success, result) {
+        var user = Ext.create('ChessUnbound.model.User', {
+          username: result.username,
+          key: result.key
+        });
+        user.save();
+        ChessUnbound.app.user = user;
+      }
+    });
   }
 
 });

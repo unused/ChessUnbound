@@ -14,19 +14,17 @@ Ext.define('ChessUnbound.proxy.Game', {
       create  : '/game',
       read    : '/games'
     }
-    // reader: {
-    //   type: 'json',
-    // }
   },
 
   buildRequest: function(operation) {
     var request = this.callParent(arguments),
-        params  = request.getParams();
-    console.log(params);
+        params  = request.getParams(),
+        user = ChessUnbound.app.user;
 
-    // Ext.apply(params, {
-    //   name: 'test' // pass in the query string to the search api
-    // });
+    Ext.apply(params, {
+      username: user.get('username'),
+      key: user.get('key')
+    });
 
     request.setParams(params);
     request.setUrl(this.getUrl() + this.buildUrl(request));
