@@ -2,7 +2,7 @@ Ext.define("ChessUnbound.controller.Game", {
   extend: "Ext.app.Controller",
   config: {
     refs: {
-      gamesListContainer: "gameslistcontainer",
+      gamesListContainer: 'gameslistcontainer',
       gameBoard: {
         autoCreate: true,
         selector: 'gameboard',
@@ -16,8 +16,12 @@ Ext.define("ChessUnbound.controller.Game", {
     },
     control: {
       gamesListContainer: {
-        newGameEvent: "onNewGame"
-        // abortGameEvent: "onAbortGame"
+        newGameCommand: 'onNewGame',
+        openGameCommand: 'onOpenGameCommand'
+        // abortGameCommand: "onAbortGame"
+      },
+      gameEditor: {
+        createGameCommand: 'onCreateGameCommand'
       }
     }
   },
@@ -31,15 +35,42 @@ Ext.define("ChessUnbound.controller.Game", {
     console.log("onAbortGame pending"); // TODO pending
   },
 
-  onOpenGameEvent: function () {
-    console.log("onOpenGameEvent");
-    openGameBoard(); // TODO set record
+  onOpenGameCommand: function (list, record) {
+    console.log("onOpenGameCommand");
+    this.openGameBoard(record);
   },
 
-  openGameBoard: function () { // TODO set record) {
+  openGameBoard: function (record) {
     var gameBoard = this.getGameBoard();
-    // gameBoard.setRecord(record); // TODO set record
+    gameBoard.setRecord(record);
     Ext.Viewport.animateActiveItem(gameBoard, {type: 'slide', direction: 'left'});
-  }
+  },
+
+  onCreateGameCommand: function() {
+    console.log('onCreateGameCommand');
+    var gameName = Ext.ComponentQuery.query('#nameField')[0].getValue();
+    console.log(gameName);
+    var game = Ext.create('ChessUnbound.model.Game', { name: gameName });
+    // FIXME does not send any information (name)
+    // game.save({
+    //   success: function(game) {
+    //     console.log("Saved Game! New ID is "+ game.getId());
+    //   }
+    // });
+    // NOTE workaround
+    Ext.data.JsonP.request({
+      url: 'http://localhost:4567/game',
+      params: {
+        name: gameName,
+        username: ChessUnbound.app.user.get('username'),
+        key: ChessUnbound.app.user.get('key')
+      }
+    });
+
+    var games = Ext.getStore('Games');
+    games.load();
+    var gamesListContainer = { xtype: 'gameslistcontainer' };
+    Ext.Viewport.animateActiveItem(gamesListContainer, {type: 'slide', direction: 'right'});
+  },
 
 });

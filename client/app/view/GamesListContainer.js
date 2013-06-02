@@ -39,9 +39,14 @@ Ext.define("ChessUnbound.view.GamesListContainer", {
     this.add([topToolbar, gamesList]);
   },
 
+  onGamesListDisclose: function (list, record, target, index, evt, options) {
+    console.log("openGameCommand");
+    this.fireEvent('openGameCommand', this, record);
+  },
+
   onNewButtonTap: function () {
-    console.log("newGameEvent");
-    this.fireEvent("newGameEvent", this);
+    console.log("newGameCommand");
+    this.fireEvent("newGameCommand", this);
   }
 
 });
