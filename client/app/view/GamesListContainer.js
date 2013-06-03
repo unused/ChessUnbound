@@ -20,8 +20,8 @@ Ext.define("ChessUnbound.view.GamesListContainer", {
 
     var topToolbar = {
       xtype: "toolbar",
-      title: 'ChessUnbound - '
-        + ChessUnbound.app.user.get('username'),
+      title: 'ChessUnbound',
+        // + ChessUnbound.app.user.get('username'),
       docked: "top",
       items: [
         { xtype: 'spacer' },

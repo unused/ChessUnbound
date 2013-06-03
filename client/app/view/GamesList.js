@@ -5,6 +5,6 @@ Ext.define("ChessUnbound.view.GamesList", {
     loadingText: "Loading Games...",
     emptyText: '<div class="games-list-empty-text">No games found.</div>',
     onItemDisclosure: true,
-    itemTpl: '<div class="list-item-title">{name}</div><div class="list-item-status">{status}</div>'
+    itemTpl: '<div class="list-item-title game">{name}</div><div class="list-item-status">{status}</div>'
   }
 });

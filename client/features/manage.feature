@@ -4,26 +4,26 @@ Feature: manage games
   I want to manage my games
 
 	Scenario: create game
-		When I am on the "Home" screen
+		When I am on the "GamesListContainer" screen
       And I press the "New Game" button
-		Then I should be on the "Gameditor" screen
+		Then I should be on the "GameEditor" screen
       And I write "Muhkuh" in the "name" field
       And I press the "Create" button
-    Then I should be on the "Home" screen
+    Then I should be on the "GamesListContainer" screen
       And I should see "Muhkuh" in the game list read "waiting"
 
   Scenario: abort game creation
-    When I am on the "Home" screen
+    When I am on the "GamesListContainer" screen
       And I press the "New Game" button
     Then I should be on the "Gameditor" screen
       And I write "Muhkuh" in the "name" field
       And I press the "Abort" button
-    Then I should be on the "Home" screen
+    Then I should be on the "GamesListContainer" screen
       And I should not see "Muhkuh" in the game list
 
 	Scenario: join game
     Given in game list the game "MuhKuh" is "waiting"
-		When I am on the "Home" screen
+		When I am on the "GamesListContainer" screen
       And I press the "Join" button on the "MuhKuh" game
 		Then I should be on the "Board" screen
     When I press the "Play" button
@@ -32,12 +32,12 @@ Feature: manage games
 
 	Scenario: declined join game
     Given in game list the game "MuhKuh" is "waiting"
-		When I am on the "Home" screen
+		When I am on the "GamesListContainer" screen
     Then I should not read "Join" within "game-list"
 
 	Scenario: watch game
     Given in game list the game "MuhKuh" is "waiting"
-		When I am on the "Home" screen
+		When I am on the "GamesListContainer" screen
       And I press the "Watch" button
 		Then I should be on the "Board" screen
       Then I should read "watching" within "game-info"

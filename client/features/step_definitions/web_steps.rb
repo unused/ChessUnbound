@@ -8,9 +8,9 @@ When(/^I am in the game with FEN "(.*?)"$/) do |fen|
   @fen = fen
 end
 
-When(/^I am on the "([^"]*)" screen$/) do |route|
-  route = '' if route == APP_HOME_NAME
-  visit("#{route}")
+When(/^I am on the "([^"]*)" screen$/) do |path|
+  path = '' if path == APP_HOME_NAME
+  visit path
 end
 
 When(/^I press the "([^"]*)" button$/) do |button|
@@ -31,11 +31,9 @@ When(/^the opponent wants to play$/) do
 end
 
 Then(/^I should be on the "([^"]*)" screen$/) do |route|
-  # route = (route == APP_HOME_NAME) ? "" : "##{route}"
-  # assert_equal current_url, "#{current_host}#{route}"
-  item_id = "ext-#{route.downcase}-1"
-  result = page.evaluate_script('Ext.Viewport.getActiveItem().getId()');
-  assert_equal item_id, result
+  item_regexp = /ext-#{route.downcase}-\d+/
+  target = page.evaluate_script('Ext.Viewport.getActiveItem().getId()');
+  assert_match item_regexp, target
 end
 
 Then(/^I should( not)? see "([^"]*)" in the game list$/) do |negate, game|
@@ -44,7 +42,6 @@ Then(/^I should( not)? see "([^"]*)" in the game list$/) do |negate, game|
   assert (!!(negate) ^ found_game)
 end
 
-# TODO merge with above
 Then(/^I should see "([^"]*)" in the game list read "([^"]*)"$/) do |game, status|
   page.find('div.game').has_content?("#{game} - #{status}")
 end

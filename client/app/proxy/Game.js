@@ -21,10 +21,11 @@ Ext.define('ChessUnbound.proxy.Game', {
         params  = request.getParams(),
         user = ChessUnbound.app.user;
 
-    Ext.apply(params, {
-      username: user.get('username'),
-      key: user.get('key')
-    });
+    if(user != undefined)
+      Ext.apply(params, {
+        username: user.get('username'),
+        key: user.get('key')
+      });
 
     request.setParams(params);
     request.setUrl(this.getUrl() + this.buildUrl(request));

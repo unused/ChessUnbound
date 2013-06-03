@@ -38,28 +38,35 @@ Ext.application({
 
   autoLogIn: function() {
     var me = this;
+    // FIXME fix this mess
     console.log('autologin');
     Ext.ModelMgr.getModel('ChessUnbound.model.User').load('ext-record-1', {
-      success: function(user) { ChessUnbound.app.user = user; },
-      failure: function() { me.createUser(); } // does not block!?
+      success: function(user) {
+        ChessUnbound.app.user = user;
+        var games = Ext.getStore('Games');
+        games.load();
+      },
+      failure: function() { me.createUser(); }
     });
-    console.log(ChessUnbound.app.user.get('username'));
-    var games = Ext.getStore('Games');
-    games.load();
+    console.log('after autologin');
   },
 
   createUser: function() {
-    Ext.data.JsonP.request({
+    return Ext.data.JsonP.request({
       url: 'http://localhost:4567/user',
       callbackKey: 'callback',
 
       callback: function(success, result) {
+        console.log('createUser callback started');
         var user = Ext.create('ChessUnbound.model.User', {
           username: result.username,
           key: result.key
         });
         user.save();
         ChessUnbound.app.user = user;
+        var games = Ext.getStore('Games');
+        games.load();
+        console.log('createUser callback finished');
       }
     });
   }
