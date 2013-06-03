@@ -13,7 +13,7 @@ Ext.define('ChessUnbound.view.GameEditor', {
       items: [
         {
         xtype: 'textfield',
-        label: 'Name',
+        label: 'Game Name',
         itemId: 'nameField',
         name: 'name'
       }
@@ -27,7 +27,7 @@ Ext.define('ChessUnbound.view.GameEditor', {
         xtype: 'button',
         itemId: 'abortBtn',
         ui: 'decline',
-        text: 'Abort'
+        text: 'Back'
       },
       {
         xtype: 'spacer'
@@ -56,7 +56,8 @@ Ext.define('ChessUnbound.view.GameEditor', {
   },
 
   onAbortBtnTap: function(button, e, eOpts) {
-    this.fireEvent("backToHomeCommand", this);
+    console.log('backCommand');
+    this.fireEvent("backCommand", this);
   },
 
   onCreateBtnTap: function(button, e, eOpts) {

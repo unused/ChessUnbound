@@ -1,9 +1,6 @@
 Ext.define("ChessUnbound.view.GameBoard", {
-  extend: "Ext.form.Panel",
+  extend: "Ext.Panel",
   alias: "widget.gameboard",
-  config:{
-    scrollable:'vertical'
-  },
 
   initialize: function () {
     this.callParent(arguments);
@@ -11,7 +8,8 @@ Ext.define("ChessUnbound.view.GameBoard", {
     var backButton = {
       xtype: "button",
       ui: "back",
-      text: "Home"
+      text: "Home",
+      handler: this.onBackButtonTap
     };
     var topToolbar = {
       xtype: "toolbar",
@@ -22,6 +20,7 @@ Ext.define("ChessUnbound.view.GameBoard", {
     var chessBoard = {
       xtype: "container",
       itemId: "chessboard",
+      pack: 'center',
       html: ''
     }
     this.add( [ topToolbar, chessBoard ] );
@@ -29,8 +28,14 @@ Ext.define("ChessUnbound.view.GameBoard", {
 
   init: function() {
     var me = this,
-      game = me.getRecord()
+      game = me.getRecord(),
       board = me.getComponent('chessboard');
     board.set('html', ChessUnbound.ChessBoard.htmlByFen(game.get('fen')));
+  },
+
+  onBackButtonTap: function () {
+    console.log("backCommand");
+    this.fireEvent("backCommand", this);
   }
+
 });

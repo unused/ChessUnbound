@@ -16,23 +16,28 @@ Ext.define("ChessUnbound.controller.Game", {
     },
     control: {
       gamesListContainer: {
-        newGameCommand: 'onNewGame',
+        newGameCommand: 'onNewGameCommand',
         openGameCommand: 'onOpenGameCommand'
-        // abortGameCommand: "onAbortGame"
+      },
+      gameBoard: {
+        backCommand: 'onBackToGameListCommand'
       },
       gameEditor: {
+        backCommand: 'onBackToGameListCommand',
         createGameCommand: 'onCreateGameCommand'
       }
     }
   },
 
-  onNewGame: function() {
+  onNewGameCommand: function() {
     var gameEditor = this.getGameEditor();
     Ext.Viewport.animateActiveItem(gameEditor, {type: 'slide', direction: 'left'});
   },
 
-  onAbortGame: function(list, record) {
-    console.log("onAbortGame pending"); // TODO pending
+  onBackToGameListCommand: function() {
+    console.log('onBackToGameListCommand');
+    var gamesListContainer = { xtype: 'gameslistcontainer' };
+    Ext.Viewport.animateActiveItem(gamesListContainer, {type: 'slide', direction: 'right'});
   },
 
   onOpenGameCommand: function (list, record) {
