@@ -88,6 +88,17 @@ get '/games' do
   games.to_json
 end
 
+# get a list of open games
+#   authentication!
+#   :username, String
+# response: games
+get '/opengames' do
+  protect!
+  games = Game.where(status: 'waiting')
+    .not_in(black: [params[:username]], white: [params[:username]])
+  games.to_json
+end
+
 # join a waiting game
 #   authentication!
 # response: success
