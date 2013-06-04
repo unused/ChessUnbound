@@ -8,6 +8,7 @@ Feature: communicating with the api
     Then the response status should be 404
 
   Scenario: responds with callback
-    When I send a GET request to "/user"
-    Then the response body should match "/^my_callback([.]*)$"
+    When I send a GET request to "/user" with the following:
+      | callback | my_callback |
+    Then the response body should match "^my_callback(.*)$"
 

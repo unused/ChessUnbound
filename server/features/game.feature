@@ -33,3 +33,22 @@ Feature: game management
     When I send a GET request to "/game/join/test_game_id"
     Then the response status should be 200
 
+  @clean_database
+  Scenario: list open games
+    Given the following list of games:
+        | black     | white     | status  |
+        | Philipp   | nil       | waiting |
+        | nil       | Christoph | waiting |
+        | Christoph | Philipp   | playing |
+        | nil       | Philipp   | waiting |
+        | Markus    | nil       | waiting |
+      And I am registered user "Philipp" with key "RxfSCE5QtDZFkuO0VeEMyfyc"
+    When I send a GET request to "/opengames" with the following:
+        | username | Philipp                  |
+        | key      | RxfSCE5QtDZFkuO0VeEMyfyc |
+    Then the response status should be 200
+      And the response should have the following data:
+        | black     | white     | status  |
+        | nil       | Christoph | waiting |
+        | Markus    | nil       | waiting |
+

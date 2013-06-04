@@ -3,13 +3,9 @@ require 'jsonpath'
 # Service steps
 When /^I send a (GET|POST|PUT|DELETE) request to "([^"]*)"(?: with the following:)?$/ do |*args|
 
-  options = {
-    params: {},
-    method: args.shift.downcase.to_sym
-  }
+  options = { params: {}, method: args.shift.downcase.to_sym }
 
-  path = args.shift
-  input = args.shift
+  path, input = args.shift, args.shift
 
   unless input.nil?
     if input.class == Cucumber::Ast::Table
@@ -19,12 +15,10 @@ When /^I send a (GET|POST|PUT|DELETE) request to "([^"]*)"(?: with the following
     end
   end
 
-  unless @user.nil?
-    options[:params].merge!({
-      username: @user.username,
-      key: @user.key
-    })
-  end
+  options[:params].merge!({
+    username: @user.username,
+    key: @user.key
+  }) unless @user.nil?
 
   request path, options
 end
@@ -55,5 +49,9 @@ Then /^the response should have the following data:$/  do |response|
     end
     assert found, "response #{json_data} did not have data: #{row}"
   end
+end
+
+Then(/^the response body should match "([^"]*)"$/) do |exp|
+  assert last_response.body.match(Regexp.new(exp))
 end
 
