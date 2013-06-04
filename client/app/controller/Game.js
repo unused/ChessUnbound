@@ -3,6 +3,7 @@ Ext.define("ChessUnbound.controller.Game", {
   config: {
     refs: {
       gamesListContainer: 'gameslistcontainer',
+      joinGamesListContainer: 'joingameslistcontainer',
       gameBoard: {
         autoCreate: true,
         selector: 'gameboard',
@@ -17,7 +18,8 @@ Ext.define("ChessUnbound.controller.Game", {
     control: {
       gamesListContainer: {
         newGameCommand: 'onNewGameCommand',
-        openGameCommand: 'onOpenGameCommand'
+        openGameCommand: 'onOpenGameCommand',
+        joinGameCommand: 'onJoinGamesListContainerCommand'
       },
       gameBoard: {
         backCommand: 'onBackToGameListCommand'
@@ -25,6 +27,10 @@ Ext.define("ChessUnbound.controller.Game", {
       gameEditor: {
         backCommand: 'onBackToGameListCommand',
         createGameCommand: 'onCreateGameCommand'
+      },
+      joinGamesListContainer: {
+        joinGameCommand: 'onJoinGameCommand',
+        backCommand: 'onBackToGameListCommand'
       }
     }
   },
@@ -35,13 +41,24 @@ Ext.define("ChessUnbound.controller.Game", {
   },
 
   onBackToGameListCommand: function() {
-    console.log('onBackToGameListCommand');
-    var gamesListContainer = { xtype: 'gameslistcontainer' };
+    var games = Ext.getStore('Games');
+    games.load();
+    var gamesListContainer = this.getGamesListContainer();
     Ext.Viewport.animateActiveItem(gamesListContainer, {type: 'slide', direction: 'right'});
   },
 
+  onJoinGameCommand: function() {
+    console.log('onJoinGameCommand');
+  },
+
+  onJoinGamesListContainerCommand: function() {
+    // var joinGamesListContainer = this.getJoinGamesListContainer();
+    // Ext.Viewport.animateActiveItem(joinGamesListContainer, {type: 'slide', direction: 'left'});
+    var joinGamesListContainer = { xtype: 'joingameslistcontainer' };
+    Ext.Viewport.animateActiveItem(joinGamesListContainer, {type: 'slide', direction: 'left'});
+  },
+
   onOpenGameCommand: function (list, record) {
-    console.log("onOpenGameCommand");
     this.openGameBoard(record);
   },
 

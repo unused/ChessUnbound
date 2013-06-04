@@ -1,6 +1,5 @@
 
 Given(/^in game list the game "([^"]*)" is "([^"]*)"$/) do |name, status|
-  # TODO test-server: create game name status
   @game = Game.create(name: name, status: status)
 end
 
@@ -17,8 +16,8 @@ When(/^I press the "([^"]*)" button$/) do |button|
   page.find("span", :text => Regexp.new(button)).click
 end
 
-When(/^I press the "([^"]*)" button on the "([^"]*)" game$/) do |button, game|
-  page.find("span", :text => Regexp.new(button)).click
+When(/^I tap the "([^"]*)" game in the list$/) do |game|
+  page.find("span", :text => Regexp.new(gamgame)).click
 end
 
 When(/^I write "([^"]*)" in the "([^"]*)" field$/) do |text,field|

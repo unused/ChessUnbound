@@ -21,25 +21,34 @@ Ext.define("ChessUnbound.view.GamesListContainer", {
     var topToolbar = {
       xtype: "toolbar",
       title: 'ChessUnbound',
-        // + ChessUnbound.app.user.get('username'),
       docked: "top",
       items: [
         { xtype: 'spacer' },
         newButton
       ],
     };
+
     var gamesList = {
       xtype: "gameslist",
       store: Ext.getStore('Games'),
       listeners: {
-        disclose: { fn: this.onGamesListDisclose, scope: this } // TODO ?
+        itemtap: { fn: this.onGamesListItemTap, scope: this }
       }
     };
 
-    this.add([topToolbar, gamesList]);
+    var joinButton = {
+      xtype: "button",
+      text: 'Join a Game',
+      docked: 'bottom',
+      ui: 'action',
+      handler: this.onJoinButtonTap,
+      scope: this
+    };
+
+    this.add([topToolbar, gamesList, joinButton]);
   },
 
-  onGamesListDisclose: function (list, record, target, index, evt, options) {
+  onGamesListItemTap: function (list, index, target, record, e, eOpts) {
     console.log("openGameCommand");
     this.fireEvent('openGameCommand', this, record);
   },
@@ -47,6 +56,11 @@ Ext.define("ChessUnbound.view.GamesListContainer", {
   onNewButtonTap: function () {
     console.log("newGameCommand");
     this.fireEvent("newGameCommand", this);
+  },
+
+  onJoinButtonTap: function () {
+    console.log("joinGameCommand");
+    this.fireEvent("joinGameCommand", this);
   }
 
 });

@@ -24,11 +24,10 @@ Feature: manage games
 	Scenario: join game
     Given in game list the game "MuhKuh" is "waiting"
 		When I am on the "GamesListContainer" screen
-      And I press the "Join" button on the "MuhKuh" game
-		Then I should be on the "Board" screen
-    When I press the "Play" button
-      And the opponent wants to play
-		Then I should read "playing" within "game-info"
+      And I press the "Join a Game" button
+		Then I should be on the "JoinGamesListContainer" screen
+    When I tap the "Rubinstein" game in the list
+      Then I sould be on the "GameBoard" screen
 
 	Scenario: declined join game
     Given in game list the game "MuhKuh" is "waiting"

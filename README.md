@@ -50,6 +50,10 @@ The possible game status can be found at the ruby-chess library [documentation][
       games list of authenticated user
       response: { [ game, game, ... ] }
 
+    /opengames [get] !authenticate
+      list of open games
+      response: { [ game, game, ... ] }
+
     /game/join/:game_id [get] !authenticate
       join a waiting game
 

@@ -15,13 +15,15 @@ Ext.application({
     'User'
   ],
   stores: [
-    'Games'
+    'Games',
+    'OpenGames'
   ],
   views: [
     'GameBoard',
     'GameEditor',
     'GamesList',
-    'GamesListContainer'
+    'GamesListContainer',
+    'JoinGamesListContainer'
   ],
   controllers: [
     'Game'

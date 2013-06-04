@@ -3,14 +3,13 @@
 .x-list .x-list-disclosure { position: absolute; bottom: 0.85em; right: 0.44em; }
 .notes-list-empty-text { padding:10px; }
 
-.x-item-selected .list-item-name { color:#ffffff; }
-.x-item-selected .list-item-status { color:#ffffff; }
+.x-item-pressed { background-color:#ccc; }
 .list-item-name { float:left; width:100%; font-size:90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right:25px; line-height:150%; }
 .list-item-status { float:left; width:95%; color:#666666; font-size:80%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right:25px; }
 
 
 /* chess board - @see http://designindevelopment.com/css/css3-chess-board/ */
-#chess_board { border:5px solid #333; }
+#chess_board { border:5px solid #333; margin: 25px; }
 #chess_board {
   color:#000;
   font-size:60px;

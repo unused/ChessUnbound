@@ -3,11 +3,13 @@ Ext.define('ChessUnbound.ChessBoard', {
 
   htmlByFen: function(fen) {
     var board_html = '<table id="chess_board" cellpadding="0" cellspacing="0">',
-      me = this;
-    board_html += "<tr>";
+      me = this
+      index = 8;
+
+    board_html += '<tr>';
     for(var i=0; fen[i] != ' '; i++) {
       if(fen[i] == "/")
-        board_html += "</tr><tr>";
+        board_html += '</tr><tr>';
       else
         board_html += '<td>' + me.chessPieceByFen(fen[i]) + '</td>';
     }

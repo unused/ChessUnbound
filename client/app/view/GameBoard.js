@@ -4,25 +4,26 @@ Ext.define("ChessUnbound.view.GameBoard", {
 
   initialize: function () {
     this.callParent(arguments);
-    // TODO set chess board
+
     var backButton = {
       xtype: "button",
       ui: "back",
-      text: "Home",
+      text: "Back",
+      scope: this,
       handler: this.onBackButtonTap
     };
     var topToolbar = {
       xtype: "toolbar",
       docked: "top",
-      title: "chess board",
+      title: "ChessUnbound",
       items: [ backButton ]
     };
     var chessBoard = {
       xtype: "container",
       itemId: "chessboard",
-      pack: 'center',
-      html: ''
-    }
+      pack: "center",
+      html: ""
+    };
     this.add( [ topToolbar, chessBoard ] );
   },
 
@@ -33,8 +34,7 @@ Ext.define("ChessUnbound.view.GameBoard", {
     board.set('html', ChessUnbound.ChessBoard.htmlByFen(game.get('fen')));
   },
 
-  onBackButtonTap: function () {
-    console.log("backCommand");
+  onBackButtonTap: function() {
     this.fireEvent("backCommand", this);
   }
 
