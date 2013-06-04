@@ -1,7 +1,7 @@
 
-Given(/^in game list the game "([^"]*)" is "([^"]*)"$/) do |game, status|
+Given(/^in game list the game "([^"]*)" is "([^"]*)"$/) do |name, status|
   # TODO test-server: create game name status
-  # @game = Server.stub(Game.create(game: game, status: status))
+  @game = Game.create(name: name, status: status)
 end
 
 When(/^I am in the game with FEN "(.*?)"$/) do |fen|

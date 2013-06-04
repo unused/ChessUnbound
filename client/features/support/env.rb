@@ -14,3 +14,5 @@ Capybara.run_server = false
 
 APP_HOME_NAME = 'GamesListContainer'
 Capybara.app_host = 'http://chessunbound.dev/app.html'
+
+require File.expand_path("../server.rb", __FILE__)

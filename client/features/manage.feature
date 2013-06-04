@@ -15,9 +15,9 @@ Feature: manage games
   Scenario: abort game creation
     When I am on the "GamesListContainer" screen
       And I press the "New Game" button
-    Then I should be on the "Gameditor" screen
+    Then I should be on the "GameEditor" screen
       And I write "Muhkuh" in the "name" field
-      And I press the "Abort" button
+      And I press the "Back" button
     Then I should be on the "GamesListContainer" screen
       And I should not see "Muhkuh" in the game list
 
