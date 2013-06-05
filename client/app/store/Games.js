@@ -6,7 +6,10 @@ Ext.define('ChessUnbound.store.Games', {
   ],
 
   config: {
-    model: 'ChessUnbound.model.Game'
+    model: 'ChessUnbound.model.Game',
+    proxy: {
+      type: 'game'
+    }
   }
 
 });

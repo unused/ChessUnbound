@@ -28,16 +28,7 @@ Ext.define("ChessUnbound.view.JoinGamesListContainer", {
       ]
     };
 
-    var user = ChessUnbound.app.user;
-    var games = Ext.getStore('Games');
-    games.setProxy({
-      type: 'jsonp',
-      url: 'http://localhost:4567/opengames',
-      extraParams: {
-        username: user.get('username'),
-        key: user.get('key')
-      }
-    });
+    var games = Ext.getStore('OpenGames');
     games.load();
     var gamesList = {
       xtype: "gameslist",

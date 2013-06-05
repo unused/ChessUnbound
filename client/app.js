@@ -8,7 +8,8 @@ Ext.application({
     'ChessUnbound.util.Helper',
     'ChessUnbound.util.Server',
     'ChessUnbound.ChessBoard',
-    'ChessUnbound.proxy.Game'
+    'ChessUnbound.proxy.Game',
+    'ChessUnbound.proxy.OpenGame'
   ],
 
   models: [

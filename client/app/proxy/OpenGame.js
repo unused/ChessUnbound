@@ -1,12 +1,12 @@
-Ext.define('ChessUnbound.proxy.Game', {
+Ext.define('ChessUnbound.proxy.OpenGame', {
   extend: 'Ext.data.proxy.Proxy',
-  alias: 'proxy.game',
+  alias: 'proxy.opengame',
 
   create: function(operation, callback, scope) {
-    Server.request('game', {}, callback);
+    console.error('method not available!');
   },
   read: function(operation, callback, scope) {
-    Server.request('games', {}, function(response) {
+    Server.request('opengames', {}, function(response) {
       scope.setData(response);
     });
   },

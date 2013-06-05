@@ -41,14 +41,18 @@ Ext.define("ChessUnbound.controller.Game", {
   },
 
   onBackToGameListCommand: function() {
-    var games = Ext.getStore('Games');
-    games.load();
+    console.log('onBackToGameListCommand');
+    Ext.getStore('Games').load();
     var gamesListContainer = this.getGamesListContainer();
     Ext.Viewport.animateActiveItem(gamesListContainer, {type: 'slide', direction: 'right'});
   },
 
-  onJoinGameCommand: function() {
-    console.log('onJoinGameCommand');
+  onJoinGameCommand: function(list, record) {
+    var me = this;
+    Server.request('game/join/'+record.get('_id'), {}, function() {
+      console.log('success');
+      me.onBackToGameListCommand();
+    });
   },
 
   onJoinGamesListContainerCommand: function() {
