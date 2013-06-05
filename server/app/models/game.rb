@@ -16,10 +16,9 @@ class Game
   validates :status, inclusion: { in: STATUS }
 
   def as_json(options=nil)
-    super({only: [:_id,:name,:black,:white,:fen,:status]}.merge(options))
+    super({only: [:name,:black,:white,:fen,:status]}.merge(options)).merge(_id: self.id.to_s)
   end
 
-  # TODO: store user_id instead of name, to keeb relation when user is renamed
   def add_player(username)
     if self.white.nil?
       self.white = username
