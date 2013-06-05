@@ -108,7 +108,8 @@ get '/game/join/:game_id' do
   game = Game.find(params[:game_id])
   raise "game is not waiting" unless game.waiting?
   game.add_player authorized_user.username
-  game.save
+  game.status = 'playing'
+  game.save.to_s
 end
 
 # make a move
