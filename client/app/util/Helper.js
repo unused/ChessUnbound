@@ -15,7 +15,8 @@ Ext.define('ChessUnbound.util.Helper', {
     Ext.ModelMgr.getModel('ChessUnbound.model.User').load('current-user', {
       success: function(user) {
         console.log('user loaded successfully');
-        me.reload(user);
+        Server.setUser(user);
+        Ext.getStore('Games').load();
       },
       failure: function() { me.generateUser(); }
     });
@@ -29,13 +30,9 @@ Ext.define('ChessUnbound.util.Helper', {
         username: response.username,
         key: response.key
       });
-      user.save();
-      me.reload(user);
+      user.save({
+        success: function() { Server.setUser(user); }
+      });
     });
-  },
-
-  reload: function(user) {
-    Server.setUser(user);
-    Ext.getStore('Games').load();
   }
 });

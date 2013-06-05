@@ -11,10 +11,10 @@ Ext.define('ChessUnbound.proxy.Game', {
     Server.request('game', {}, callback);
   },
   read: function(operation, callback, scope) {
-    // FIXME Mask "loading Games" does not disappear on user create
     Server.request('games', {}, function(response) {
       scope.setData(response);
     });
+    console.log('proxy.Game.read');
   },
   update: function(operation, callback, scope) {
     console.error('method not available!');

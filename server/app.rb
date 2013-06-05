@@ -75,7 +75,8 @@ get '/game' do
   game = {}
   rand_color = [true,false].sample ? :black : :white
   game[rand_color] = authorized_user.username
-  game[:name] = params[:name] || 'chess-unbound'
+  game[:name] = params[:name] || ""
+  game[:name] = 'chess-unbound' if game[:name].chomp == ""
   Game.create(game).to_json
 end
 
