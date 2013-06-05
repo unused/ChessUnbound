@@ -17,7 +17,7 @@ When(/^I press the "([^"]*)" button$/) do |button|
 end
 
 When(/^I tap the "([^"]*)" game in the list$/) do |game|
-  page.find("span", :text => Regexp.new(gamgame)).click
+  page.find("div.list-item-title.game", :text => Regexp.new(game)).click
 end
 
 When(/^I write "([^"]*)" in the "([^"]*)" field$/) do |text,field|
