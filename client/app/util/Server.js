@@ -15,15 +15,17 @@ Ext.define('ChessUnbound.util.Server', {
       params: this.params,
       success: success,
       failure: function(response) {
-        console.log('Server failed request ' + action);
-        console.log(response)
+        console.log('Server failed request ' + action, response);
       }
     });
   },
   authenticate: function() {
-    if(this.getUser() !== {}) {
-      this.params.username = this.getUser().username;
-      this.params.key = this.getUser().key;
+    var user = this.getUser();
+    if(user !== undefined) {
+      Ext.apply(this.params, {
+        username: user.get('username'),
+        key: user.get('key')
+      });
     }
   }
 

@@ -1,35 +1,25 @@
 /**
- * @class Ext.data.GameProxy
- * @extends Ext.data.proxy.JsonP
- *
+ * @class ChessUnbound.proxy.Game
+ * @extends Ext.data.proxy.Proxy
  */
 Ext.define('ChessUnbound.proxy.Game', {
-  extend: 'Ext.data.proxy.JsonP',
+  extend: 'Ext.data.proxy.Proxy',
   alias: 'proxy.game',
 
-  config: {
-    url: 'http://localhost:4567',
-
-    api: {
-      create  : '/game',
-      read    : '/games'
-    }
+  create: function(operation, callback, scope) {
+    console.log('api/game');
+    Server.request('game', {}, callback);
   },
-
-  buildRequest: function(operation) {
-    var request = this.callParent(arguments),
-        params  = request.getParams(),
-        user = ChessUnbound.app.user;
-
-    if(user != undefined)
-      Ext.apply(params, {
-        username: user.get('username'),
-        key: user.get('key')
-      });
-
-    request.setParams(params);
-    request.setUrl(this.getUrl() + this.buildUrl(request));
-
-    return request;
+  read: function(operation, callback, scope) {
+    // FIXME Mask "loading Games" does not disappear on user create
+    Server.request('games', {}, function(response) {
+      scope.setData(response);
+    });
+  },
+  update: function(operation, callback, scope) {
+    console.error('method not available!');
+  },
+  destroy: function(operation, callback, scope) {
+    console.error('method not available!');
   }
 });

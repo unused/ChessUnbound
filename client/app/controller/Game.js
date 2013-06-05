@@ -71,27 +71,11 @@ Ext.define("ChessUnbound.controller.Game", {
 
   onCreateGameCommand: function() {
     console.log('onCreateGameCommand');
-    var gameName = Ext.ComponentQuery.query('#nameField')[0].getValue();
-    console.log(gameName);
-    var game = Ext.create('ChessUnbound.model.Game', { name: gameName });
-    // FIXME does not send any information (name)
-    // game.save({
-    //   success: function(game) {
-    //     console.log("Saved Game! New ID is "+ game.getId());
-    //   }
-    // });
-    // NOTE workaround
-    Ext.data.JsonP.request({
-      url: 'http://localhost:4567/game',
-      params: {
-        name: gameName,
-        username: ChessUnbound.app.user.get('username'),
-        key: ChessUnbound.app.user.get('key')
-      }
+    console.log(Server.getUser());
+    Server.request('game', {
+      name: Ext.ComponentQuery.query('#nameField')[0].getValue()
     });
-
-    var games = Ext.getStore('Games');
-    games.load();
+    Ext.getStore('Games').load();
     var gamesListContainer = { xtype: 'gameslistcontainer' };
     Ext.Viewport.animateActiveItem(gamesListContainer, {type: 'slide', direction: 'right'});
   },

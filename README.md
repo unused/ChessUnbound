@@ -18,7 +18,7 @@ server: sinatra for web services
 
 bdd: cucumber with selenium
 
-tdd: sencha unit-tests and ruby minitests
+tdd: jasmine unit-tests and ruby minitests
 
 ## Server Setup
 
