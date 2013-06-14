@@ -1,3 +1,4 @@
+/* lists */
 .x-list .x-list-item .x-list-item-label { min-height: 3.5em!important; }
 .x-list .x-list-item { position: relative !important; border-bottom: 1px solid gray; }
 .x-list .x-list-disclosure { position: absolute; bottom: 0.85em; right: 0.44em; }
@@ -36,4 +37,8 @@
   box-shadow:inset 0 0 10px rgba(0,0,0,.4);
   -moz-box-shadow:inset 0 0 10px rgba(0,0,0,.4);
   -webkit-box-shadow:inset 0 0 10px rgba(0,0,0,.4);
+}
+#chess_board tr td.field.selected {
+  background:-moz-linear-gradient(top, #9ee888, #eee);
+  background:-webkit-gradient(linear,0 0, 0 100%, from(#9ee888), to(#eee));
 }

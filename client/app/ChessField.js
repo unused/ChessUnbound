@@ -3,7 +3,7 @@ Ext.define('ChessUnbound.ChessField', {
     var alph = ['a','b','c','d','e','f','g','h'],
       col = field.cellIndex,
       row = field.parentNode.rowIndex;
-    this.move = alph[row] + (8-col).toString();
+    this.move = alph[col] + (8-row).toString();
     return this;
   }
 });

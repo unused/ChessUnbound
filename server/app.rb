@@ -123,6 +123,7 @@ get '/move/:game_id/:move' do
   chess = Chess::Game.load_fen game.fen
   valid = begin
       chess.move params[:move]
+      game.update_attributes(fen: chess.board.to_fen)
       true
     rescue Chess::IllegalMoveError
       false

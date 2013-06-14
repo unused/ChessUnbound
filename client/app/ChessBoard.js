@@ -1,65 +1,79 @@
 Ext.define('ChessUnbound.ChessBoard', {
   singleton: true,
 
-  htmlByFen: function(fen) {
-    var board_html = '<table id="chess_board" cellpadding="0" cellspacing="0">',
-      me = this
-      index = 8;
-
-    board_html += '<tr>';
-    for(var i=0; fen[i] != ' '; i++) {
-      if(fen[i] == "/")
-        board_html += '</tr><tr>';
-      else
-        board_html += '<td>' + me.chessPieceByFen(fen[i]) + '</td>';
+  tableByFen: function(fen) {
+    var rows = [],
+        row = { columns: [] },
+        i = 0;
+    while(fen[i] != ' ') {
+      if(fen[i] == "/") {
+        rows.push(row);
+        row = { columns: [] };
+      } else {
+        row = this.parseFen(fen[i], row);
+      }
+      i++;
     }
-    board_html += "</tr>";
-    board_html += '</table>';
-    return board_html;
-  },
+    rows.push(row);
+    var info = fen[++i] == 'w' ? 'white' : 'black';
+    var data = { id: 'chess_board', rows: rows, info: 'player: '+info };
+    var table = Ext.create('ChessUnbound.TableComponent', { data: data });
 
+    return table;
+  },
+  parseFen: function(fen, row) {
+    var piece = this.chessPieceByFen(fen);
+    if(piece === "")
+      row = this.addEmptyFields(parseInt(fen), row);
+    else
+      row.columns.push({ html: piece });
+    return row;
+  },
+  addEmptyFields: function(times, row) {
+    for (var i=0;i<times;i++)
+      row.columns.push({ html: '' });
+    return row;
+  },
   chessPieceByFen: function(notation) {
     var piece = "";
     switch(notation) {
       case "p":
         piece = "&#9823;";
-        break;
+      break;
       case "r":
         piece = "&#9820;";
-        break;
+      break;
       case "n":
         piece = "&#9822;";
-        break;
+      break;
       case "b":
         piece = "&#9821;";
-        break;
+      break;
       case "q":
         piece = "&#9819;";
-        break;
+      break;
       case "k":
         piece = "&#9818;";
-        break;
+      break;
 
       case "P":
         piece = "&#9817;";
-        break;
+      break;
       case "R":
         piece = "&#9814;";
-        break;
+      break;
       case "N":
         piece = "&#9816;";
-        break;
+      break;
       case "B":
         piece = "&#9815;";
-        break;
+      break;
       case "Q":
         piece = "&#9812;";
-        break;
+      break;
       case "K":
         piece = "&#9813;";
-        break;
-      default:
-        piece = "&nbsp;</td><td>&nbsp;".repeat(parseInt(notation - 1));
+      break;
     }
     return piece;
   }

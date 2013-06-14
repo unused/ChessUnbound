@@ -48,9 +48,8 @@ Ext.define("ChessUnbound.controller.Game", {
   },
 
   onJoinGameCommand: function(list, record) {
-    var me = this;
     Server.request('game/join/'+record.get('_id'), {}, function() {
-      console.log('success');
+      console.log('successfully joined game');
       me.onBackToGameListCommand();
     });
   },
