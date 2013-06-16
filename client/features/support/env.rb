@@ -16,3 +16,4 @@ APP_HOME_NAME = 'GamesListContainer'
 Capybara.app_host = 'http://chessunbound.dev/app.html'
 
 require File.expand_path("../server.rb", __FILE__)
+require File.expand_path("../helper.rb", __FILE__)

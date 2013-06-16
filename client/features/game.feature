@@ -5,25 +5,13 @@ Feature: playing chess
 
 	Scenario: white me moves a piece
 		Given a running game
-      And I am white
-    When it is white turn
-      And I move a piece correctly
-		Then the board should be updated
-      And it is black turn
+    When I move a piece correctly
+    Then it is black turn
 
-  Scenario: black me moves a piece
+  Scenario: black opponent moves a piece
     Given a running game
-      And I am black
-    When it is black turn
-      And I move a piece correctly
-    Then the board should be updated
-      And it is white turn
-
-  Scenario: white opponent moves a piece
-    Given a running game
-      And I am black
-    When it is white turn
-    Then I need to wait for black
+    When black moves a piece
+    Then I should see the
 
   Scenario: black opponent moves a piece
     Given a running game

@@ -10,6 +10,7 @@ end
 When(/^I am on the "([^"]*)" screen$/) do |path|
   path = '' if path == APP_HOME_NAME
   visit path
+  sleep(1)
 end
 
 When(/^I press the "([^"]*)" button$/) do |button|
@@ -17,6 +18,7 @@ When(/^I press the "([^"]*)" button$/) do |button|
 end
 
 When(/^I tap the "([^"]*)" game in the list$/) do |game|
+  sleep(1)
   page.find("div.list-item-title.game", :text => Regexp.new(game)).click
 end
 
@@ -25,8 +27,7 @@ When(/^I write "([^"]*)" in the "([^"]*)" field$/) do |text,field|
 end
 
 When(/^the opponent wants to play$/) do
-  # TODO server: start the game
-  # @game.update(status: 'playing')
+  @game.update(status: 'playing')
 end
 
 Then(/^I should be on the "([^"]*)" screen$/) do |route|
@@ -42,6 +43,7 @@ Then(/^I should( not)? see "([^"]*)" in the game list$/) do |negate, game|
 end
 
 Then(/^I should see "([^"]*)" in the game list read "([^"]*)"$/) do |game, status|
+  sleep(1)
   page.find('div.game').has_content?("#{game} - #{status}")
 end
 

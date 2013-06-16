@@ -22,10 +22,11 @@ Feature: manage games
       And I should not see "Muhkuh" in the game list
 
 	Scenario: join game
-    Given in game list the game "Rubinstein" is "waiting"
-		When I am on the "GamesListContainer" screen
+    Given a waiting game
+    When I am on the "GamesListContainer" screen
       And I press the "Join a Game" button
 		Then I should be on the "JoinGamesListContainer" screen
-    When I tap the "Rubinstein" game in the list
+    When I tap the "waiting game" game in the list
       Then I should be on the "GamesListContainer" screen
+      And I should see "waiting game" in the game list
 

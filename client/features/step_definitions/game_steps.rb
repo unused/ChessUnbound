@@ -12,38 +12,37 @@
 
 TEST_GAME_FEN = "r1bqkbnr/ppp2ppp/2np4/4p3/2B1P3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 0 4"
 
-Given(/^a running game$/) do
-  @game = Game.create {
-    name: 'running game',
-    status: 'playing',
+Given(/^a waiting game$/) do
+  @game = Game.create(
+    name: 'waiting game',
+    status: 'waiting',
+    black: 'another player',
     fen: TEST_GAME_FEN
-  }
+  )
 end
 
-Given(/^I am (white|black)$/) do |color|
-  @user = User.last
-  @game.update_attributes(color.to_sym => @user.username)
+Given(/^a running game$/) do
+  steps "Given a waiting game"
+  steps %Q{
+      And I am on the "GamesListContainer" screen
+      And I press the "Join a Game" button
+      And I tap the "#{@game.name}" game in the list
+      And I tap the "#{@game.name}" game in the list
+  }
+  sleep(5)
 end
 
 Given(/^I move a piece correctly$/) do
-  pending "TODO client: move piece"
+  page.execute_script %(
+    Ext.get('chess_board').select('td').elements[#{ChessFieldHelper.code_to_index('a2')}].dom.click();
+    Ext.get('chess_board').select('td').elements[#{ChessFieldHelper.code_to_index('a3')}].dom.click();
+  )
 end
 
-When(/^it is( not)? (white|black|my) turn$/) do |negate,color|
-  pending "TODO client: set game situation"
-end
-
-When(/^there is a remis request$/) do
-  pending "TODO client: set remis request"
-end
-
-Then(/^the board should be updated$/) do
-  pending "TODO client: compare fen"
-end
-
-Then(/^I need to wait for (black|white)$/) do |color|
-  opponent_color = color == "black" ? "white" : "black"
-  step %{it is #{opponent_color} turn}
+Then(/^it is( not)? (white|black) turn$/) do |negate,color|
+  @game.reload
+  turn = (@game.fen.match(/.* (w|b) .*/)[1] == color[0])
+  assert (negate) ? !turn : turn
 end
 
 Then(/^the game ends with (black|white) wins?$/) do |color|
