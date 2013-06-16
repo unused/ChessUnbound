@@ -33,7 +33,10 @@ Ext.define("ChessUnbound.view.GamesListContainer", {
       store: Ext.getStore('Games'),
       listeners: {
         itemtap: { fn: this.onGamesListItemTap, scope: this }
-      }
+      },
+      plugins: [
+        { xclass: 'Ext.plugin.PullRefresh' } // TODO does work?
+      ]
     };
 
     var joinButton = {

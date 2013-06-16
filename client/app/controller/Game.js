@@ -48,6 +48,7 @@ Ext.define("ChessUnbound.controller.Game", {
   },
 
   onJoinGameCommand: function(list, record) {
+    var me = this;
     Server.request('game/join/'+record.get('_id'), {}, function() {
       console.log('successfully joined game');
       me.onBackToGameListCommand();
@@ -55,14 +56,13 @@ Ext.define("ChessUnbound.controller.Game", {
   },
 
   onJoinGamesListContainerCommand: function() {
-    // var joinGamesListContainer = this.getJoinGamesListContainer();
-    // Ext.Viewport.animateActiveItem(joinGamesListContainer, {type: 'slide', direction: 'left'});
+    // var joinGamesListContainer = this.getJoinGamesListContainer(); // NOTE does not work, why?
     var joinGamesListContainer = { xtype: 'joingameslistcontainer' };
     Ext.Viewport.animateActiveItem(joinGamesListContainer, {type: 'slide', direction: 'left'});
   },
 
   onOpenGameCommand: function (list, record) {
-    this.openGameBoard(record);
+    if(record.get('status') == 'playing') this.openGameBoard(record);
   },
 
   openGameBoard: function (record) {

@@ -11,7 +11,7 @@ Ext.define('ChessUnbound.TableComponent', {
             '</tpl>',
           '</tr>',
         '</tpl>',
-        '<tr><th colspan="8">{info}</th></p>',
+        '<tr><th colspan="8">{info}</th></tr>',
       '</table>'
     ),
     listeners  : {

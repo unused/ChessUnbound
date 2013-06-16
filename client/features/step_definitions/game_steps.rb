@@ -13,14 +13,16 @@
 TEST_GAME_FEN = "r1bqkbnr/ppp2ppp/2np4/4p3/2B1P3/5Q2/PPPP1PPP/RNB1K1NR w KQkq - 0 4"
 
 Given(/^a running game$/) do
-  pending "TODO server: start game, client: join game"
-  # @game = ...
-  # @current_color
-  # @opponent_color
+  @game = Game.create {
+    name: 'running game',
+    status: 'playing',
+    fen: TEST_GAME_FEN
+  }
 end
 
 Given(/^I am (white|black)$/) do |color|
-  pending "TODO client: set player"
+  @user = User.last
+  @game.update_attributes(color.to_sym => @user.username)
 end
 
 Given(/^I move a piece correctly$/) do

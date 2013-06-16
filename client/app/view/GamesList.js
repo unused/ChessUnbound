@@ -5,6 +5,8 @@ Ext.define("ChessUnbound.view.GamesList", {
   config: {
     loadingText: "Loading Games...",
     emptyText: '<div class="games-list-empty-text">No games found.</div>',
-    itemTpl: '<div class="list-item-title game">{name}</div><div class="list-item-status">{status}</div>'
+    itemTpl:
+      '<div class="list-item-title game">{name}</div>' +
+      '<tpl if="status == \'waiting\'"><div class="list-item-status waiting">waiting for other player</div></tpl>'
   }
 });

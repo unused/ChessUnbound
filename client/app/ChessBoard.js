@@ -15,8 +15,9 @@ Ext.define('ChessUnbound.ChessBoard', {
       i++;
     }
     rows.push(row);
+
     var info = fen[++i] == 'w' ? 'white' : 'black';
-    var data = { id: 'chess_board', rows: rows, info: 'player: '+info };
+    var data = { id: 'chess_board', rows: rows, info: 'it\'s '+info+'s turn' };
     var table = Ext.create('ChessUnbound.TableComponent', { data: data });
 
     return table;

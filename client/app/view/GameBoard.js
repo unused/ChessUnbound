@@ -22,27 +22,47 @@ Ext.define("ChessUnbound.view.GameBoard", {
   },
 
   init: function() {
-    var game = this.getRecord();
-    this.setChessBoard(game.get('fen'));
+    console.log('GameBoard init');
+    var me = this;
+    me.refresh = true;
+    me.setChessBoard();
+    window.setTimeout(function() { me.refreshChessBoard(); },5000);
   },
 
-  setChessBoard: function(fen) {
-    var chess_board = Ext.fly('chess_board');
+  refreshChessBoard: function() {
+    console.log('refreshChessBoard');
+    var me = this;
+    if(me.selectedField() === false && !me.getRecord().is_my_turn()) {
+      console.log('refreshing');
+      me.getRecord().refresh();
+      me.setChessBoard();
+    }
+    if(me.refresh) window.setTimeout(function() { me.refreshChessBoard(); }, 5000);
+  },
+
+  setChessBoard: function() {
+    console.log('setChessBoard');
+    var game = this.getRecord(),
+        chess_board = Ext.fly('chess_board');
+    this.items.items[0].setTitle((game.is_my_turn()?'your':'opponent') + ' turn');
     if(chess_board) chess_board.dom.remove();
-    this.add([ ChessUnbound.ChessBoard.tableByFen(fen) ]);
+    this.add([ ChessUnbound.ChessBoard.tableByFen(game.get('fen')) ]);
   },
 
   onBackButtonTap: function() {
+    this.refresh = false;
     this.fireEvent("backCommand", this);
   },
 
   // move to controller!!!
   onMoveFieldTap: function(field) {
     console.log('in onMoveFieldTap');
-    if(this.selectedField() === false) {
-      if(field.innerHTML != '') { field.className = 'field selected'; }
-    } else {
-      this.sendMove(this.selectedField(), field);
+    if(this.getRecord().is_my_turn()) {
+      if(this.selectedField() === false) {
+        if(field.innerHTML != '') { field.className = 'field selected'; }
+      } else {
+        this.sendMove(this.selectedField(), field);
+      }
     }
   },
 
@@ -52,6 +72,7 @@ Ext.define("ChessUnbound.view.GameBoard", {
   },
 
   sendMove: function(from, to) {
+    console.log('sendMove');
     var me = this,
       game_id = this.getRecord().get('_id'),
       move = new ChessUnbound.ChessField(from).move +
@@ -62,15 +83,22 @@ Ext.define("ChessUnbound.view.GameBoard", {
         Ext.Msg.alert('Invalid Move', 'please make a valid move', Ext.emptyFn);
         me.clearFieldSelection();
       } else {
-        Ext.Msg.alert(response.status, '', Ext.emptyFn);
-        me.setChessBoard(response.fen);
-        // me.onBackButtonTap();
+        if(response.status != 'in_progress') { // game finished?
+          Ext.Msg.alert(response.status, '', function() {
+            me.onBackButtonTap();
+          });
+          me.onBackButtonTap(); // TODO remove if refresh works
+        } else { // game still in progress
+          me.getRecord().set('fen', response.fen);
+          me.setChessBoard();
+        }
       }
       Ext.Viewport.setMasked(false);
     });
   },
 
   clearFieldSelection: function() {
+    console.log('clearFieldSelection');
     var fields = Ext.fly('chess_board').select('td').elements;
     for(var i=0; i < fields.length; i++) {
       fields[i].className = 'field';
