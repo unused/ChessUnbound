@@ -26,18 +26,19 @@ Ext.define("ChessUnbound.view.GameBoard", {
     var me = this;
     me.refresh = true;
     me.setChessBoard();
-    window.setTimeout(function() { me.refreshChessBoard(); },5000);
+    window.setTimeout(function() { me.refreshChessBoard(); },3000);
   },
 
   refreshChessBoard: function() {
     console.log('refreshChessBoard');
     var me = this;
-    if(me.selectedField() === false && !me.getRecord().is_my_turn()) {
+    if(me.selectedField() === false) { // && !me.getRecord().is_my_turn()) {
       console.log('refreshing');
-      me.getRecord().refresh();
-      me.setChessBoard();
+      me.getRecord().refresh(function() {
+        me.setChessBoard();
+      });
     }
-    if(me.refresh) window.setTimeout(function() { me.refreshChessBoard(); }, 5000);
+    if(me.refresh) window.setTimeout(function() { me.refreshChessBoard(); }, 1000);
   },
 
   setChessBoard: function() {
@@ -54,7 +55,6 @@ Ext.define("ChessUnbound.view.GameBoard", {
     this.fireEvent("backCommand", this);
   },
 
-  // move to controller!!!
   onMoveFieldTap: function(field) {
     console.log('in onMoveFieldTap');
     if(this.getRecord().is_my_turn()) {
@@ -87,8 +87,8 @@ Ext.define("ChessUnbound.view.GameBoard", {
           Ext.Msg.alert(response.status, '', function() {
             me.onBackButtonTap();
           });
-          me.onBackButtonTap(); // TODO remove if refresh works
-        } else { // game still in progress
+          // me.onBackButtonTap();
+        } else {
           me.getRecord().set('fen', response.fen);
           me.setChessBoard();
         }

@@ -19,18 +19,17 @@ Ext.define('ChessUnbound.model.Game', {
     else // me is white
       return (turn_color == ' w ');
   },
-  refresh: function() {
+  refresh: function(callback) {
     var me = this;
     console.log('in refresh');
     Ext.getStore('Games').load().data.each(function() {
-        console.log(this.get('_id') == me.get('_id'));
-        if(this.get('_id') == me.get('_id')) me.set(this.data);
-        if(this.get('_id') == me.get('_id')) {
-          console.log('game found', this.data, records);
-        }
-      });
+      console.log(this.get('_id') == me.get('_id'));
+      if(this.get('_id') == me.get('_id')) me.set(this.data);
+      if(this.get('_id') == me.get('_id')) {
+        console.log('game found', this);
+      }
     });
-    console.log(x);
     console.log(me.get('fen'));
+    callback();
   }
 });
