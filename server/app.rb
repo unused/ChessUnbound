@@ -86,6 +86,7 @@ end
 get '/games' do
   protect!
   games = Game.find_by_username(params[:username])
+    .order_by(:updated_at.desc)
   games.to_json
 end
 
