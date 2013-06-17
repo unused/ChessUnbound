@@ -3,7 +3,7 @@ Ext.define('ChessUnbound.proxy.OpenGame', {
   alias: 'proxy.opengame',
 
   create: function(operation, callback, scope) {
-    console.error('method not available!');
+    Logger.error('method not available!');
   },
   read: function(operation, callback, scope) {
     Server.request('opengames', {}, function(response) {
@@ -11,9 +11,9 @@ Ext.define('ChessUnbound.proxy.OpenGame', {
     });
   },
   update: function(operation, callback, scope) {
-    console.error('method not available!');
+    Logger.error('method not available!');
   },
   destroy: function(operation, callback, scope) {
-    console.error('method not available!');
+    Logger.error('method not available!');
   }
 });

@@ -11,9 +11,9 @@ Ext.define('ChessUnbound.proxy.Game', {
     });
   },
   update: function(operation, callback, scope) {
-    console.error('method not available!');
+    Logger.error('method not available!');
   },
   destroy: function(operation, callback, scope) {
-    console.error('method not available!');
+    Logger.error('method not available!');
   }
 });

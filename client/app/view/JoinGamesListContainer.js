@@ -42,12 +42,12 @@ Ext.define("ChessUnbound.view.JoinGamesListContainer", {
   },
 
   onGamesListItemTap: function (list, index, target, record, e, eOpts) {
-    console.log("joinGameCommand");
+    Logger.event("[JoinGamesListContainer] onGamesListItemTap");
     this.fireEvent('joinGameCommand', this, record);
   },
 
   onBackButtonTap: function () {
-    console.log("backCommand");
+    Logger.event("[JoinGamesListContainer] onBackButtonTap");
     this.fireEvent("backCommand", this);
   }
 

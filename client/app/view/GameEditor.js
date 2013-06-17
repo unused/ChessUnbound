@@ -56,12 +56,12 @@ Ext.define('ChessUnbound.view.GameEditor', {
   },
 
   onAbortBtnTap: function(button, e, eOpts) {
-    console.log('backCommand');
+    Logger.event('[GameEditor] backCommand');
     this.fireEvent("backCommand", this);
   },
 
   onCreateBtnTap: function(button, e, eOpts) {
-    console.log('createGameCommand');
+    Logger.event('[GameEditor] createGameCommand');
     this.fireEvent("createGameCommand", this);
   }
 

@@ -7,6 +7,7 @@ Ext.application({
   requires: [
     'ChessUnbound.util.Helper',
     'ChessUnbound.util.Server',
+    'ChessUnbound.util.Logger',
     'ChessUnbound.TableComponent',
     'ChessUnbound.ChessBoard',
     'ChessUnbound.ChessField',

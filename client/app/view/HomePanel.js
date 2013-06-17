@@ -50,11 +50,12 @@ Ext.define('ChessUnbound.view.HomePanel', {
   },
 
   onNewGameBtnTap: function(button, e, eOpts) {
+    Logger.event("[HomePanel] onNewGameBtnTap");
     this.fireEvent("newGameCommand", this);
   },
 
   onSelectGameItemTap: function(button, e, eOpts) {
-    console.log('test');
+    Logger.event("[HomePanel] onSelectGameItemTap");
     this.fireEvent("selectGameItemTap", this);
   }
 

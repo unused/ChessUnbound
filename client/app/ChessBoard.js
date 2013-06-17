@@ -22,6 +22,7 @@ Ext.define('ChessUnbound.ChessBoard', {
 
     return table;
   },
+
   parseFen: function(fen, row) {
     var piece = this.chessPieceByFen(fen);
     if(piece === "")
@@ -30,11 +31,13 @@ Ext.define('ChessUnbound.ChessBoard', {
       row.columns.push({ html: piece });
     return row;
   },
+
   addEmptyFields: function(times, row) {
     for (var i=0;i<times;i++)
       row.columns.push({ html: '' });
     return row;
   },
+
   chessPieceByFen: function(notation) {
     var piece = "";
     switch(notation) {

@@ -35,7 +35,7 @@ Ext.define("ChessUnbound.view.GamesListContainer", {
         itemtap: { fn: this.onGamesListItemTap, scope: this }
       },
       plugins: [
-        { xclass: 'Ext.plugin.PullRefresh' } // TODO does work?
+        { xclass: 'Ext.plugin.PullRefresh' }
       ]
     };
 
@@ -52,17 +52,17 @@ Ext.define("ChessUnbound.view.GamesListContainer", {
   },
 
   onGamesListItemTap: function (list, index, target, record, e, eOpts) {
-    console.log("openGameCommand");
+    Logger.event("[GamesListContainer] openGameCommand");
     this.fireEvent('openGameCommand', this, record);
   },
 
   onNewButtonTap: function () {
-    console.log("newGameCommand");
+    Logger.event("[GamesListContainer] newGameCommand");
     this.fireEvent("newGameCommand", this);
   },
 
   onJoinButtonTap: function () {
-    console.log("joinGameCommand");
+    Logger.event("[GamesListContainer] joinGameCommand");
     this.fireEvent("joinGameCommand", this);
   }
 

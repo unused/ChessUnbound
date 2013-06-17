@@ -11,10 +11,10 @@ Ext.define('ChessUnbound.util.Helper', {
   alternateClassName : 'Helper',
   autoLogin: function() {
     var me = this;
-    console.log('in Helper.autoLogin');
+    Logger.log('[Helper] auto login');
     Ext.ModelMgr.getModel('ChessUnbound.model.User').load('current-user', {
       success: function(user) {
-        console.log('user loaded successfully');
+        Logger.log('[Helper] user loaded successfully');
         Server.setUser(user);
         Ext.getStore('Games').load();
       },
@@ -23,8 +23,9 @@ Ext.define('ChessUnbound.util.Helper', {
   },
   generateUser: function() {
     var me = this;
+    Logger.log('[Helper] generate new user');
     Server.request('user', {}, function(response) {
-      console.log('Generated User: ' + response.username);
+      Logger.log('[Helper] generated user: ' + response.username);
       var user = Ext.create('ChessUnbound.model.User', {
         id: 'current-user',
         username: response.username,

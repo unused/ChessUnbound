@@ -8,9 +8,16 @@ Ext.define('ChessUnbound.model.Game', {
       {name: "fen", type: "string"},
       {name: "white", type: "string"},
       {name: "black", type: "string"},
-      {name: "status", type: "string"}
+      {name: "status", type: "string"},
+      {name: "status_message", type: "string"}
     ]
   },
+
+  constructor: function(data, id, raw, convertedData) {
+    this.callParent(arguments);
+    this.set('status_message', this.status_message());
+  },
+
   is_my_turn: function() {
     var user = Server.getUser();
     var turn_color = this.get('fen').match(/\s(w|b)\s/)[0];
@@ -19,17 +26,26 @@ Ext.define('ChessUnbound.model.Game', {
     else // me is white
       return (turn_color == ' w ');
   },
+
+  status_message: function() {
+    var msg = '';
+    if(this.get('status') == 'playing') {
+      if(this.is_my_turn()) msg = 'playing - your turn';
+      else msg = 'playing - opponent turn';
+    } else if(this.get('status') == 'waiting') {
+      msg = 'waiting - for other player to join';
+    } else if(this.get('finished') == 'finished') {
+      if(this.is_my_turn()) msg = 'finished - you won';
+      else msg = 'finished - you lost';
+    }
+    return msg;
+  },
+
   refresh: function(callback) {
     var me = this;
-    console.log('in refresh');
     Ext.getStore('Games').load().data.each(function() {
-      console.log(this.get('_id') == me.get('_id'));
       if(this.get('_id') == me.get('_id')) me.set(this.data);
-      if(this.get('_id') == me.get('_id')) {
-        console.log('game found', this);
-      }
     });
-    console.log(me.get('fen'));
     callback();
   }
 });
