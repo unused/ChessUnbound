@@ -30,13 +30,13 @@ Ext.define('ChessUnbound.model.Game', {
   status_message: function() {
     var msg = '';
     if(this.get('status') == 'playing') {
-      if(this.is_my_turn()) msg = 'playing - your turn';
-      else msg = 'playing - opponent turn';
+      if(this.is_my_turn()) msg = '<span class="playing active">playing - your turn</span>';
+      else msg = '<span class="playing">playing - opponent turn</span>';
     } else if(this.get('status') == 'waiting') {
-      msg = 'waiting - for other player to join';
-    } else if(this.get('finished') == 'finished') {
-      if(this.is_my_turn()) msg = 'finished - you won';
-      else msg = 'finished - you lost';
+      msg = '<span class="waiting">waiting - for other player to join</span>';
+    } else if(this.get('status') == 'finished') {
+      if(this.is_my_turn()) msg = '<span class="lost">finished - you lost</span>';
+      else msg = '<span class="won">finished - you won</span>';
     }
     return msg;
   },

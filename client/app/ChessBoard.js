@@ -73,10 +73,10 @@ Ext.define('ChessUnbound.ChessBoard', {
         piece = "&#9815;";
       break;
       case "Q":
-        piece = "&#9812;";
+        piece = "&#9813;";
       break;
       case "K":
-        piece = "&#9813;";
+        piece = "&#9812;";
       break;
     }
     return piece;

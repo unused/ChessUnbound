@@ -32,8 +32,7 @@ Ext.define("ChessUnbound.view.GameBoard", {
   initRefresh: function() {
     var me = this;
     Logger.log('[GameBoard] initRefresh');
-    me.refresh_lock = false;
-    // window.setTimeout(function() { me.refreshChessBoard(); }, 3000);
+    window.setTimeout(function() { me.refreshChessBoard(); }, 3000);
   },
 
   refreshChessBoard: function() {
@@ -88,7 +87,6 @@ Ext.define("ChessUnbound.view.GameBoard", {
       move = new ChessUnbound.ChessField(from).move +
           new ChessUnbound.ChessField(to).move;
     Ext.Viewport.setMasked({xtype:'loadmask',message:"Please wait...\nvalidating move"});
-    me.refresh_lock = true; Logger.log('[GameBoard] refresh lock');
     Server.request('move/'+game_id+'/'+move, {}, function(response) {
       if(response.valid == false) {
         Ext.Msg.alert('Invalid Move', 'please make a valid move', Ext.emptyFn);
