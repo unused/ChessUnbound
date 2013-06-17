@@ -36,18 +36,20 @@ Ext.define("ChessUnbound.controller.Game", {
   },
 
   onNewGameCommand: function() {
+    Logger.event('[GameController] onNewGameCommand');
     var gameEditor = this.getGameEditor();
     Ext.Viewport.animateActiveItem(gameEditor, {type: 'slide', direction: 'left'});
   },
 
   onBackToGameListCommand: function() {
-    Logger.log('onBackToGameListCommand');
+    Logger.event('[GameController] onBackToGameListCommand');
     Ext.getStore('Games').load();
     var gamesListContainer = this.getGamesListContainer();
     Ext.Viewport.animateActiveItem(gamesListContainer, {type: 'slide', direction: 'right'});
   },
 
   onJoinGameCommand: function(list, record) {
+    Logger.event('[GameController] onJoinGameCommand');
     var me = this;
     Server.request('game/join/'+record.get('_id'), {}, function() {
       Logger.log('successfully joined game');
@@ -56,12 +58,14 @@ Ext.define("ChessUnbound.controller.Game", {
   },
 
   onJoinGamesListContainerCommand: function() {
+    Logger.event('[GameController] onJoinGamesListContainerCommand');
     // var joinGamesListContainer = this.getJoinGamesListContainer(); // NOTE does not work, why?
     var joinGamesListContainer = { xtype: 'joingameslistcontainer' };
     Ext.Viewport.animateActiveItem(joinGamesListContainer, {type: 'slide', direction: 'left'});
   },
 
   onOpenGameCommand: function (list, record) {
+    Logger.event('[GameController] onOpenGameCommand');
     if(record.get('status') == 'playing') this.openGameBoard(record);
   },
 
@@ -73,8 +77,7 @@ Ext.define("ChessUnbound.controller.Game", {
   },
 
   onCreateGameCommand: function() {
-    Logger.log('onCreateGameCommand');
-    Logger.log(Server.getUser());
+    Logger.event('onCreateGameCommand');
     Server.request('game', {
       name: Ext.ComponentQuery.query('#nameField')[0].getValue()
     });

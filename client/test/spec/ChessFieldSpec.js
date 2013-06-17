@@ -1,4 +1,4 @@
-describe("ChessUnbound.ChessField", function() {
+describe("ChessField", function() {
 
   it("can convert a table field to chess position", function() {
     var ChessFieldSpecTableCell = new Ext.Class({ // HTML Table Cell Stub

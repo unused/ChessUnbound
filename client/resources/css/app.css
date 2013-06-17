@@ -29,6 +29,7 @@
   vertical-align:middle;
   width:80px;
 }
+#chess_board td.info-message { font-size: 20px; height: 24px; }
 #chess_board tr:nth-child(odd) td:nth-child(even),
 #chess_board tr:nth-child(even) td:nth-child(odd) {
   background:#ccc;

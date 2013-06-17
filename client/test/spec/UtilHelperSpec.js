@@ -1,4 +1,4 @@
-describe("App", function() {
+describe("Helper", function() {
 
   it("extended String.repeat should repeat string", function() {
     expect(" doh! ".repeat(3)).toEqual(" doh!  doh!  doh! ");

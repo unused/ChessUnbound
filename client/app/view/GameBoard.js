@@ -33,7 +33,7 @@ Ext.define("ChessUnbound.view.GameBoard", {
     var me = this;
     Logger.log('[GameBoard] initRefresh');
     me.refresh_lock = false;
-    window.setTimeout(function() { me.refreshChessBoard(); }, 3000);
+    // window.setTimeout(function() { me.refreshChessBoard(); }, 3000);
   },
 
   refreshChessBoard: function() {
@@ -51,7 +51,7 @@ Ext.define("ChessUnbound.view.GameBoard", {
   },
 
   setChessBoard: function() {
-    Logger.log('setChessBoard');
+    Logger.log('[GameBoard] setChessBoard');
     var game = this.getRecord(),
         chess_board = Ext.fly('chess_board');
     this.items.items[0].setTitle((game.is_my_turn()?'your':'opponent') + ' turn');
@@ -60,6 +60,7 @@ Ext.define("ChessUnbound.view.GameBoard", {
   },
 
   onBackButtonTap: function() {
+    Logger.event("[GameBoard] onBackButtonTap");
     this.refresh = false;
     this.fireEvent("backCommand", this);
   },

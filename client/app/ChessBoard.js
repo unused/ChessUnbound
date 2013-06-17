@@ -4,23 +4,23 @@ Ext.define('ChessUnbound.ChessBoard', {
   tableByFen: function(fen) {
     var rows = [],
         row = { columns: [] },
-        i = 0;
-    while(fen[i] != ' ') {
-      if(fen[i] == "/") {
+        index = 0
+        board_delimiter = ' '
+        row_delimiter = '/';
+    while(fen[index] != board_delimiter) {
+      if(fen[index] == row_delimiter) {
         rows.push(row);
         row = { columns: [] };
       } else {
-        row = this.parseFen(fen[i], row);
+        row = this.parseFen(fen[index], row);
       }
-      i++;
+      index++;
     }
     rows.push(row);
 
-    var info = fen[++i] == 'w' ? 'white' : 'black';
-    var data = { id: 'chess_board', rows: rows, info: 'it\'s '+info+'s turn' };
-    var table = Ext.create('ChessUnbound.TableComponent', { data: data });
-
-    return table;
+    var info_message = fen[++index] == 'w' ? 'white' : 'black';
+    var data = { id: 'chess_board', rows: rows, info: 'it\'s '+info_message+'s turn' };
+    return Ext.create('ChessUnbound.TableComponent', { data: data });
   },
 
   parseFen: function(fen, row) {
@@ -33,7 +33,7 @@ Ext.define('ChessUnbound.ChessBoard', {
   },
 
   addEmptyFields: function(times, row) {
-    for (var i=0;i<times;i++)
+    for(var empty_fields=0;empty_fields<times;empty_fields++)
       row.columns.push({ html: '' });
     return row;
   },
