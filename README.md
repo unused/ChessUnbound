@@ -6,9 +6,8 @@ Softwareentwicklung und Wissensmanagement / Softwaretechnologie - Group 33
 
 ChessUnbound is a mobile game application. You do not have to create an account
 for thus a guest user is generated for you on the first application start.
-Further you can change your username if you want to. You can start as many
-chess games as you want. Any created game will be also listed for other user
-where they can choose to play a game with you.
+You can start as many chess games as you want. Any created game will be also
+listed for other user where they can choose to play a game with you.
 
 ## General Information
 
