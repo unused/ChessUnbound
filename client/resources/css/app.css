@@ -1,12 +1,5 @@
 /* lists */
-.x-list .x-list-item .x-list-item-label { min-height: 3.5em!important; }
-.x-list .x-list-item { position: relative !important; border-bottom: 1px solid gray; }
-.x-list .x-list-disclosure { position: absolute; bottom: 0.85em; right: 0.44em; }
-.notes-list-empty-text { padding:10px; }
-
-.x-item-pressed { background-color:#ccc; }
-.list-item-name { float:left; width:100%; font-size:90%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right:25px; line-height:150%; }
-.list-item-status { float:left; width:95%; color:#666; font-size:80%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right:25px; }
+.list-item-status span { font-size: 75%; }
 
 .list-item-status span.won { color: white; background-color: #FBB117; }
 .list-item-status span.lost { color: white; background-color: #333; }
