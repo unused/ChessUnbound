@@ -15,7 +15,7 @@ Ext.define('ChessUnbound.util.Server', {
       params: this.params,
       success: success,
       failure: function(response) {
-        Logger.error('[Server] failed request ' + action, response);
+        Logger.error('[Server] failed request ' + action);
       }
     });
   },
