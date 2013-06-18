@@ -1,6 +1,9 @@
 Ext.define("ChessUnbound.view.GameBoard", {
   extend: "Ext.Panel",
   alias: "widget.gameboard",
+  config: {
+    scrollable: true
+  },
 
   initialize: function () {
     this.callParent(arguments);
