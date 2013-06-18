@@ -7,6 +7,8 @@ require 'chess'
 set :root, File.dirname(__FILE__)
 Mongoid.load! File.join(settings.root, 'config', 'mongoid.yml')
 
+set :bind, '192.168.1.6'
+
 module Sinatra
     register CrossOrigin
 end
