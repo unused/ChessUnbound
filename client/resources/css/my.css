@@ -1,0 +1,43 @@
+/* lists */
+.list-item-status span { font-size: 75%; }
+
+.list-item-status span.won { color: white; background-color: #FBB117; }
+.list-item-status span.lost { color: white; background-color: #333; }
+.list-item-status span.playing { color: white; background-color: #666; }
+.list-item-status span.playing.active { color: #333; background-color: #666; }
+
+/* chess board - @see http://designindevelopment.com/css/css3-chess-board/ */
+#chess_board { border:5px solid #333; margin: 25px; }
+#chess_board {
+  color:#000;
+  font-size:30px;
+  text-decoration:none;
+  text-shadow:0 1px #fff;
+}
+#chess_board td {
+  background:#fff;
+  /* background:-moz-linear-gradient(top, #fff, #eee); */
+  /* background:-webkit-gradient(linear,0 0, 0 100%, from(#fff), to(#eee)); */
+  /* box-shadow:inset 0 0 0 1px #fff; */
+  /* -moz-box-shadow:inset 0 0 0 1px #fff; */
+  /* -webkit-box-shadow:inset 0 0 0 1px #fff; */
+  height:30px;
+  text-align:center;
+  vertical-align:middle;
+  width:30px;
+}
+#chess_board td.info-message { font-size: 16px; height: 20px; }
+#chess_board tr:nth-child(odd) td:nth-child(even),
+#chess_board tr:nth-child(even) td:nth-child(odd) {
+  background:#ccc;
+  /* background:-moz-linear-gradient(top, #ccc, #eee); */
+  /* background:-webkit-gradient(linear,0 0, 0 100%, from(#ccc), to(#eee)); */
+  /* box-shadow:inset 0 0 10px rgba(0,0,0,.4); */
+  /* -moz-box-shadow:inset 0 0 10px rgba(0,0,0,.4); */
+  /* -webkit-box-shadow:inset 0 0 10px rgba(0,0,0,.4); */
+}
+#chess_board tr td.field.selected {
+  background-color: #9ee888;
+  /* background:-moz-linear-gradient(top, #9ee888, #eee); */
+  /* background:-webkit-gradient(linear,0 0, 0 100%, from(#9ee888), to(#eee)); */
+}

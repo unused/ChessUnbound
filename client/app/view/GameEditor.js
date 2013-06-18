@@ -13,7 +13,7 @@ Ext.define('ChessUnbound.view.GameEditor', {
       items: [
         {
         xtype: 'textfield',
-        label: 'Game Name',
+        label: 'Name',
         itemId: 'nameField',
         name: 'name'
       }

@@ -11,7 +11,7 @@
 	 * @cfg  applicationId
 	 * This is the name namespace for your application. On IOS, this should match the name of your application in the Apple Provisioning Portal.
 	 */
-	"applicationId":"ChessUnbound",
+	"applicationId":"com.android.ChessUnbound",
 
 	/**
 	 * @cfg  bundleSeedId
@@ -63,7 +63,7 @@
 	 * @required
 	 * This is where the built application file with be saved. Make sure that output path is not in your input path, you may get into endless recursive copying
 	 */
-	"outputPath":"../build/",
+	"outputPath":"/home/me/build",
 
 	/**
 	 * @cfg  configuration
@@ -82,7 +82,7 @@
 	 *  - Android
 	 *  - AndroidEmulator
 	 */
-	"platform":"AndroidEmulator",
+	"platform":"Android",
 
 	/**
 	 * @cfg  deviceType
@@ -136,18 +136,18 @@
 	 * @cfg  sdkPath
 	 * This is the path to the Android SDK, if you are developing an Android application.
 	 */
-	"sdkPath":"C:/Android/android-sdk",
+	"sdkPath":"/home/me/Software/android-sdk",
 
 	/**
 	 * @cfg  androidAPILevel
 	 * This is android API level, the version of Android SDK to use, you can read more about it here: http://developer.android.com/guide/appendix/api-levels.html.
 	 * Be sure to install corresponding platform API in android SDK manager (android_sdk/tools/android)
 	 */
-	"androidAPILevel":"14",
+	"androidAPILevel":"15",
 
         /**
 	 * @cfg {Array[String]} permissions
-	 * Array of permissions that is used by an application (Android only) 
+	 * Array of permissions that is used by an application (Android only)
 	 * Full list of permissions for Android application can be found here: http://developer.android.com/reference/android/Manifest.permission.html#ACCESS_CHECKIN_PROPERTIES
 	 */
 	"permissions":[
