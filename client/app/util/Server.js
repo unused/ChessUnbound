@@ -3,7 +3,7 @@ Ext.define('ChessUnbound.util.Server', {
   singleton: true,
   alternateClassName: 'Server',
   config: {
-    baseUrl: 'http://localhost:4567/',
+    baseUrl: 'http://192.168.1.6:4567/',
     user: {}
   },
   params: {},
