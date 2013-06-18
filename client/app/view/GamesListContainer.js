@@ -25,7 +25,7 @@ Ext.define("ChessUnbound.view.GamesListContainer", {
       items: [
         { xtype: 'spacer' },
         newButton
-      ],
+      ]
     };
 
     var gamesList = {

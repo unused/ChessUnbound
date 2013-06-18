@@ -84,6 +84,6 @@ Ext.define("ChessUnbound.controller.Game", {
     Ext.getStore('Games').load();
     var gamesListContainer = { xtype: 'gameslistcontainer' };
     Ext.Viewport.animateActiveItem(gamesListContainer, {type: 'slide', direction: 'right'});
-  },
+  }
 
 });
