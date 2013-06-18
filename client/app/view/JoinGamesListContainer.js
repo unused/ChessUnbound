@@ -20,7 +20,7 @@ Ext.define("ChessUnbound.view.JoinGamesListContainer", {
 
     var topToolbar = {
       xtype: "toolbar",
-      title: 'ChessUnbound - Join a Game',
+      title: 'Join a Game',
       docked: "top",
       items: [
         backButton,
