@@ -57,7 +57,7 @@ Ext.define("ChessUnbound.view.GameBoard", {
     var game = this.getRecord(),
         chess_board = Ext.fly('chess_board');
     this.items.items[0].setTitle((game.is_my_turn()?'your':'opponent') + ' turn');
-    if(chess_board) chess_board.dom.remove();
+    if(chess_board) this.removeAt(1);
     this.add([ ChessUnbound.ChessBoard.tableByFen(game.get('fen')) ]);
   },
 
